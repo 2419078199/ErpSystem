@@ -2,7 +2,7 @@
 
 namespace IRepository
 {
-    public interface IAcUserInfoInfoRepository : IBaseRepository<AcUserInfo>
+    public interface IAcUserInfoRepository : IBaseRepository<AcUserInfo>
     {
         
     }
