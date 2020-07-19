@@ -37,24 +37,24 @@ namespace Repository
             return await DbErpContext.Set<T>().AnyAsync(whereLamda);
         }
 
-        Task<T> IBaseRepository<T>.GetEntityByIdAsync(int id)
-        {
-            return GetEntityByIdAsync(id);
-        }
+        //Task<T> IBaseRepository<T>.GetEntityByIdAsync(int id)
+        //{
+        //    return GetEntityByIdAsync(id);
+        //}
 
-        IQueryable<T> IBaseRepository<T>.GetEntitys()
-        {
-            return GetEntitys();
-        }
+        //IQueryable<T> IBaseRepository<T>.GetEntitys()
+        //{
+        //    return GetEntitys();
+        //}
 
         public IQueryable<T> GetEntitys(Expression<Func<T, bool>> whereLamda)
         {
             return DbErpContext.Set<T>().Where(whereLamda);
         }
-        Task<bool> IBaseRepository<T>.SaveChangesAsync()
-        {
-            return SaveChangesAsync();
-        }
+        //Task<bool> IBaseRepository<T>.SaveChangesAsync()
+        //{
+        //    return SaveChangesAsync();
+        //}
 
         public async Task<T> GetEntityByIdAsync(int id)
         {
