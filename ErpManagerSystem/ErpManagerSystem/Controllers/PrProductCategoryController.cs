@@ -40,45 +40,31 @@ namespace ErpManagerSystem.Controllers
         public async Task<ActionResult<MessageModel<PrProductCategoryDto>>> AddPrProductCategoryInfo(PrProductCategoryAddDto prProductCategoryAddDto)
         {
             var res = new MessageModel<PrProductCategoryDto>();
-            if (string.IsNullOrEmpty(prProductCategoryAddDto.Name))
-            {
-                res.Success = false;
-                res.Msg = "请输入产品类型";
-                res.Code = 400;
-                return Ok(res);
-            }
             var entity = _mapper.Map<PrProductCategory>(prProductCategoryAddDto);
             await _prProductCategoryServices.AddEntityAsync(entity);
             res.Data = _mapper.Map<PrProductCategoryDto>(entity);
             return Ok(res);
         }
-        [HttpDelete("{PrProductCategoryId}")]
-        public async Task<ActionResult<MessageModel<string>>> DeletePrProductCategory(int PrProductCategoryId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<MessageModel<string>>> DeletePrProductCategory(int id)
         {
             var res = new MessageModel<string>();
-            if (!await _prProductCategoryServices.ExistEntityAsync(a => a.Id == PrProductCategoryId))
+            if (!await _prProductCategoryServices.ExistEntityAsync(a => a.Id == id))
             {
                 return NotFound(StyleCode.NotFound(res));
             }
-            await _prProductCategoryServices.DeleteEntityByIdAsync(PrProductCategoryId);
+            await _prProductCategoryServices.DeleteEntityByIdAsync(id);
             return Ok(res);
         }
         [HttpPut]
-        public async Task<ActionResult<MessageModel<PrProductCategoryDto>>> EditUserInfo(PrProductCategoryEditDto prProductCategoryEditDto)
+        public async Task<ActionResult<MessageModel<PrProductCategoryDto>>> EditUserInfo(AcUserInfoEditDto acUserInfoEditDto)
         {
             MessageModel<PrProductCategoryDto> res = new MessageModel<PrProductCategoryDto>();
-            if (!await _prProductCategoryServices.ExistEntityAsync(a => a.Id == prProductCategoryEditDto.Id))
+            if (!await _prProductCategoryServices.ExistEntityAsync(a => a.Id == acUserInfoEditDto.Id))
             {
                 return NotFound(StyleCode.NotFound(res));
             }
-            if (string.IsNullOrEmpty(prProductCategoryEditDto.Name))
-            {
-                res.Success = false;
-                res.Msg = "请输入产品类型";
-                res.Code = 400;
-                return Ok(res);
-            }
-            PrProductCategory entity = _mapper.Map<PrProductCategory>(prProductCategoryEditDto);
+            PrProductCategory entity = _mapper.Map<PrProductCategory>(acUserInfoEditDto);
             await _prProductCategoryServices.EditEntityAsync(entity);
             res.Data = _mapper.Map<PrProductCategoryDto>(entity);
             return Ok(res);
