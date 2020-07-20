@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
+using Model.Dtos.EditDto;
 using Model.Entitys;
 
 namespace ErpManagerSystem.Profiles
@@ -10,6 +12,8 @@ namespace ErpManagerSystem.Profiles
         {
             CreateMap<SlCustomer, SlCustomerDto>();
             CreateMap<SlCustomerDto, SlCustomer>();
+            CreateMap<SlCustomerAddDto, SlCustomer>();
+            CreateMap<SlCustomerEditdDto, SlCustomer>();
         }
     }
 }
