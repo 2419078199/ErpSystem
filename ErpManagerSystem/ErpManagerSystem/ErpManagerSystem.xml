@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ErpManagerSystem</name>
+    </assembly>
+    <members>
+        <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplier">
+            <summary>
+            获取经销商信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplierById(System.Int32)">
+            <summary>
+            通过Id获取经销商信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuSupplierController.CreatePuSupplier(Model.Dtos.AddDto.PuSupplierAddDto)">
+            <summary>
+            添加经销商信息
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

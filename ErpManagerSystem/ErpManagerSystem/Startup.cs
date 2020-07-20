@@ -58,7 +58,7 @@ namespace ErpManagerSystem
                     Name = "Authorization",
                     Description = "ÇëÊäÈëaccessToken"
                 });
-                //setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "ErpManagerSystem.xml"), true);
+                setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "ErpManagerSystem.xml"), true);
             });
             services.AddAuthentication(configureOptions =>
             {
