@@ -88,13 +88,13 @@ namespace ErpManagerSystem
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseRouting();
             app.UseSwagger();
             app.UseSwaggerUI(setup =>
             {
                 setup.RoutePrefix = "";
                 setup.SwaggerEndpoint("swagger/v1/swagger.json", "v1");
             });
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

@@ -4,6 +4,126 @@
         <name>ErpManagerSystem</name>
     </assembly>
     <members>
+        <member name="M:ErpManagerSystem.Controllers.AuRecordController.GetAuRecords(Model.Params.AuRecordParams)">
+            <summary>
+            AuRecord 分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.AuRecordController.GetAuRecordById(System.Int32)">
+            <summary>
+            AuRecord ID查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.AuRecordController.AddAuRecord(Model.Dtos.AddDto.AuRecordAddDto)">
+            <summary>
+            AuRecord 添加实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.AuRecordController.DeleteAuRecord(System.Int32)">
+            <summary>
+            AuRecord 删除实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.AuRecordController.EditAuRecord(Model.Dtos.EditDto.AuRecordEditDto)">
+            <summary>
+            AuRecord 修改实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductStockController.GetIcProductStocks(Model.Params.IcProductStockParams)">
+            <summary>
+            IcProductStock 分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductStockController.GetIcProductStockById(System.Int32)">
+            <summary>
+            IcProductStock ID查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductStockController.AddIcProductStock(Model.Dtos.AddDto.IcProductStockAddDto)">
+            <summary>
+            IcProductStock 添加实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductStockController.DeleteIcProductStock(System.Int32)">
+            <summary>
+            IcProductStock 删除实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductStockController.EditIcProductStock(Model.Dtos.EditDto.IcProductStockEditDto)">
+            <summary>
+            IcProductStock 修改实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcWarehouseController.GetIcWarehouses(Model.Params.IcWarehouseParams)">
+            <summary>
+            IcWarehouse 分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcWarehouseController.GetIcWarehouseById(System.Int32)">
+            <summary>
+            IcWarehouse ID查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcWarehouseController.AddIcWarehouse(Model.Dtos.AddDto.IcWarehouseAddDto)">
+            <summary>
+            IcWarehouse 添加实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcWarehouseController.DeleteIcWarehouse(System.Int32)">
+            <summary>
+            IcWarehouse 删除实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcWarehouseController.EditIcWarehouse(Model.Dtos.EditDto.IcWarehouseEditDto)">
+            <summary>
+            IcWarehouse 修改实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductController.GetPrProducts(Model.Params.PrProductParams)">
+            <summary>
+            PrProduct分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductController.GetPrProductById(System.Int32)">
+            <summary>
+            PrProduct ID查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductController.AddPrProduct(Model.Dtos.AddDto.PrProductAddDto)">
+            <summary>
+            PrProduct添加实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductController.DeletePrProduct(System.Int32)">
+            <summary>
+            PrProduct 删除实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductController.EditPrProduct(Model.Dtos.EditDto.PrProductEditDto)">
+            <summary>
+            PrProduct修改实体
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplier">
             <summary>
             获取经销商信息

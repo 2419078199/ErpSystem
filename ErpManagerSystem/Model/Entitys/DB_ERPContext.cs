@@ -6,6 +6,7 @@ namespace Model.Entitys
 {
     public partial class DB_ERPContext : DbContext
     {
+
         public DB_ERPContext(DbContextOptions<DB_ERPContext> options)
             : base(options)
         {
@@ -39,6 +40,7 @@ namespace Model.Entitys
         public virtual DbSet<SlSaleOrder> SlSaleOrder { get; set; }
         public virtual DbSet<SysConfigItem> SysConfigItem { get; set; }
         public virtual DbSet<ViewUserPermission> ViewUserPermission { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -630,8 +632,7 @@ namespace Model.Entitys
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .HasComment("编号")
-                    .ValueGeneratedNever();
+                    .HasComment("编号");
 
                 entity.Property(e => e.Address)
                     .HasColumnName("address")
