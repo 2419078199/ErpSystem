@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Model.Entitys;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace ErpManagerSystem
@@ -30,10 +31,14 @@ namespace ErpManagerSystem
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(option =>
+            {
+                option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             services.AddDbContextPool<DB_ERPContext>(Configure =>
             {
                 Configure.UseSqlServer(_configuration.GetConnectionString("default"));
+                Configure.UseLazyLoadingProxies();
             });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(setup =>
@@ -56,9 +61,9 @@ namespace ErpManagerSystem
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Name = "Authorization",
-                    Description = "请输入accessToken"
+                    Description = "璇疯緭鍏ccessToken"
                 });
-                //setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "ErpManagerSystem.xml"), true);
+                setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "ErpManagerSystem.xml"), true);
             });
             services.AddAuthentication(configureOptions =>
             {
@@ -77,7 +82,7 @@ namespace ErpManagerSystem
                     IssuerSigningKey =
                         new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Authentication:SigningKey"])),
                     RequireExpirationTime = true,
-                    ClockSkew = TimeSpan.FromDays(7),
+                    ClockSkew = TimeSpan.FromMinutes(30),
                     ValidateLifetime = true
                 };
             }).AddScheme<AuthenticationSchemeOptions, ApiResponseHandler>(nameof(ApiResponseHandler), o => { }); ;
@@ -108,11 +113,9 @@ namespace ErpManagerSystem
             string basePath = AppContext.BaseDirectory;
             Assembly servicesAssembly = Assembly.LoadFrom(Path.Combine(basePath, "Services.dll"));
             Assembly repositoryAssembly = Assembly.LoadFrom(Path.Combine(basePath, "Repository.dll"));
-            //注入Services程序集
             containerBuilder.RegisterAssemblyTypes(servicesAssembly)
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
-            //注入Repository程序集
             containerBuilder.RegisterAssemblyTypes(repositoryAssembly)
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
