@@ -29,77 +29,36 @@ namespace ErpManagerSystem
         {
             _configuration = configuration;
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson(option =>
             {
                 option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            services.AddDbContextPool<DB_ERPContext>(Configure =>
+            services.AddDbContextPool<DB_ERPContext>(configure =>
             {
-                Configure.UseSqlServer(_configuration.GetConnectionString("default"));
-                Configure.UseLazyLoadingProxies();
+                configure.UseSqlServer(_configuration.GetConnectionString("default"));
+                configure.UseLazyLoadingProxies();
             });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSwaggerGen(setup =>
-            {
-                setup.SwaggerDoc("v1", new OpenApiInfo()
-                {
-                    Version = "v1",
-                    Description = "ErpMAnagerSystemApi",
-                    Contact = new OpenApiContact()
-                    {
-                        Name = "EroManagerSystem"
-                    },
-                    Title = "EroManagerSystem"
-                });
-                setup.OperationFilter<AddResponseHeadersFilter>();
-                setup.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
-                setup.OperationFilter<SecurityRequirementsOperationFilter>();
-                setup.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
-                {
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Name = "Authorization",
-                    Description = "请输入accessToken"
-                });
-                setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "ErpManagerSystem.xml"), true);
-            });
-            services.AddAuthentication(configureOptions =>
-            {
-                configureOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                configureOptions.DefaultChallengeScheme = nameof(ApiResponseHandler);
-                configureOptions.DefaultForbidScheme = nameof(ApiResponseHandler);
-            }).AddJwtBearer(configure =>
-            {
-                configure.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidIssuer = _configuration["Authentication:Issuer"],
-                    ValidateAudience = true,
-                    ValidAudience = _configuration["Authentication:Audience"],
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey =
-                        new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Authentication:SigningKey"])),
-                    RequireExpirationTime = true,
-                    ClockSkew = TimeSpan.FromMinutes(30),
-                    ValidateLifetime = true
-                };
-            }).AddScheme<AuthenticationSchemeOptions, ApiResponseHandler>(nameof(ApiResponseHandler), o => { }); ;
+
+            services.AddAuthorizationSetup(_configuration);
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseRouting();
             app.UseSwagger();
             app.UseSwaggerUI(setup =>
             {
                 setup.RoutePrefix = "";
                 setup.SwaggerEndpoint("swagger/v1/swagger.json", "v1");
             });
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
@@ -110,15 +69,7 @@ namespace ErpManagerSystem
         }
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
-            string basePath = AppContext.BaseDirectory;
-            Assembly servicesAssembly = Assembly.LoadFrom(Path.Combine(basePath, "Services.dll"));
-            Assembly repositoryAssembly = Assembly.LoadFrom(Path.Combine(basePath, "Repository.dll"));
-            containerBuilder.RegisterAssemblyTypes(servicesAssembly)
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
-            containerBuilder.RegisterAssemblyTypes(repositoryAssembly)
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
+            containerBuilder.RegisterModule<AutofacModuleRegister>();
         }
     }
 }

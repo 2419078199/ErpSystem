@@ -40,7 +40,7 @@ namespace ErpManagerSystem.Controllers
             MessageModel<SlCustomerDto> res = new MessageModel<SlCustomerDto>();
             if (!await _slCustomerServices.ExistEntityAsync(a => a.Id == id))
             {
-                return NotFound(StyleCode.NotFound(res));
+                return NotFound(res.FailRequest(404,"请输入正确的Id"));
             }
 
             SlCustomer entity = await _slCustomerServices.GetEntityByIdAsync(id);
