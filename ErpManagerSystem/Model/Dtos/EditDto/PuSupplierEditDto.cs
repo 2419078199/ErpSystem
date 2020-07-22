@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Dtos.AddDto
+namespace Model.Dtos.EditDto
 {
-     public  class PuSupplierAddDto
+     public class PuSupplierEditDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Postcode { get; set; }
         public string Address { get; set; }

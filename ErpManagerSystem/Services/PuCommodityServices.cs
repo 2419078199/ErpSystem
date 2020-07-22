@@ -1,9 +1,13 @@
-﻿using IRepository;
+﻿using Common.Help;
+using IRepository;
 using IServices;
 using Model.Entitys;
+using Model.Params;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Services
 {
@@ -15,6 +19,16 @@ namespace Services
         {
             _pucommodityrepository = pucommodityrepository;
             base.CurrentRepository = pucommodityrepository;
+        }
+
+         public async Task<PagedList<PuCommodity>> PuCommodityInfoPaged(PuCommodityParams puCommodityparams)
+        {
+            IQueryable<PuCommodity> pucommodityinfo = _pucommodityrepository.GetEntitys();
+            if (!string.IsNullOrWhiteSpace(puCommodityparams.Name))
+            {
+                pucommodityinfo = pucommodityinfo.Where(a => a.Name.Contains(puCommodityparams.Name));
+            }
+            return await PagedList<PuCommodity>.CreatePagedList(pucommodityinfo, puCommodityparams.PageSize, puCommodityparams.PageNum);
         }
     }
 }
