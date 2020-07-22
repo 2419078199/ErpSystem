@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Common.Help;
 using IRepository;
 using IServices;
@@ -8,6 +9,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+=======
+﻿using IRepository;
+using IServices;
+using Model.Entitys;
+using System;
+using System.Collections.Generic;
+using System.Text;
+>>>>>>> origin/RepObject
 
 namespace Services
 {
@@ -20,6 +29,7 @@ namespace Services
             _pucommoditycategoryrepository = pucommoditycategoryrepository;
             base.CurrentRepository = pucommoditycategoryrepository;
         }
+<<<<<<< HEAD
 
         public async Task<PagedList<PuCommodityCategory>> PuCommodityCategoryPaged(PuCommodityCategoryParams PuCommodityCategoryParams)
         {
@@ -30,5 +40,7 @@ namespace Services
             }
             return await PagedList<PuCommodityCategory>.CreatePagedList(PuCommodityCategoryinfo, PuCommodityCategoryParams.PageSize, PuCommodityCategoryParams.PageNum);
         }
+=======
+>>>>>>> origin/RepObject
     }
 }

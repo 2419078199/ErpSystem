@@ -6,6 +6,10 @@ namespace Model.Dtos.AddDto
 {
      public  class PuSupplierAddDto
     {
+<<<<<<< HEAD
+=======
+        public int Id { get; set; }
+>>>>>>> origin/RepObject
         public string Name { get; set; }
         public string Postcode { get; set; }
         public string Address { get; set; }
@@ -17,6 +21,9 @@ namespace Model.Dtos.AddDto
         public string Credit { get; set; }
         public string Remark { get; set; }
         public int? OperatorId { get; set; }
+<<<<<<< HEAD
         public DateTime? OperateTime { get; set; }
+=======
+>>>>>>> origin/RepObject
     }
 }

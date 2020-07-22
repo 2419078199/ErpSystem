@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Common.Help;
 using IServices;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authorization;
+=======
+>>>>>>> origin/RepObject
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
+<<<<<<< HEAD
 using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
@@ -24,6 +28,14 @@ namespace ErpManagerSystem.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
+=======
+using Model.Entitys;
+
+namespace ErpManagerSystem.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+>>>>>>> origin/RepObject
     public class PuSupplierController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -35,7 +47,11 @@ namespace ErpManagerSystem.Controllers
             _pusupplierservices = pusupplierservices;
         }
         /// <summary>
+<<<<<<< HEAD
         /// 获取供应商信息
+=======
+        /// 获取经销商信息
+>>>>>>> origin/RepObject
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -48,7 +64,11 @@ namespace ErpManagerSystem.Controllers
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// 通过Id获取供应商信息
+=======
+        /// 通过Id获取经销商信息
+>>>>>>> origin/RepObject
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}",Name =nameof(PuSupplierById))]
@@ -60,6 +80,7 @@ namespace ErpManagerSystem.Controllers
             return Ok(res);
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// 供应商分页
         /// </summary>
@@ -100,10 +121,28 @@ namespace ErpManagerSystem.Controllers
             await _pusupplierservices.AddEntityAsync(entity);
 
             res.Data = _mapper.Map<PuSupplierDto>(entity);
+=======
+
+        /// <summary>
+        /// 添加经销商信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult<MessageModel<PuSupplierAddDto>>> CreatePuSupplier(PuSupplierAddDto puSupplierAddDto)
+        {
+            MessageModel<PuSupplierAddDto> res = new MessageModel<PuSupplierAddDto>();
+
+            PuSupplier entity = _mapper.Map<PuSupplier>(puSupplierAddDto);
+
+            await _pusupplierservices.AddEntityAsync(entity);
+
+            res.Data = _mapper.Map<PuSupplierAddDto>(entity);
+>>>>>>> origin/RepObject
 
             return CreatedAtRoute(nameof(PuSupplierById), new { id = entity.Id }, res); 
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// 根据ID删除供应商
         /// </summary>
@@ -161,5 +200,9 @@ namespace ErpManagerSystem.Controllers
             }
             return string.Empty;
         }
+=======
+
+       
+>>>>>>> origin/RepObject
     }
 }
