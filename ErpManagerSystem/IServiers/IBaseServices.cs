@@ -1,0 +1,25 @@
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using IRepository;
+
+namespace IServices
+{
+    public interface IBaseServices<T> where T : class
+    {
+        IBaseRepository<T> CurrentRepository { get; set; }
+        Task<bool> AddEntityAsync(T entity);
+
+        Task<bool> DeleteEntityAsync(T entity);
+
+        Task<bool> EditEntityAsync(T entity);
+
+        Task<bool> ExistEntityAsync(Expression<Func<T, bool>> whereLamda);
+
+        Task<T> GetEntityByIdAsync(int id);
+        IQueryable<T> GetEntitys(Expression<Func<T, bool>> whereLamda);
+        Task<bool> DeleteEntityByIdAsync(int id);
+        IQueryable<T> GetEntitys();
+    }
+}
