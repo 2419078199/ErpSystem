@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
+using Model.Dtos.EditDto;
 using Model.Entitys;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,8 @@ namespace ErpManagerSystem.Profiles
     {
         public PuSupplierProfile() {
             CreateMap<PuSupplier, PuSupplierDto>();
+            CreateMap<PuSupplierAddDto, PuSupplier>();
+            CreateMap<PuSupplierEditDto, PuSupplier>();
         }
     }
 }

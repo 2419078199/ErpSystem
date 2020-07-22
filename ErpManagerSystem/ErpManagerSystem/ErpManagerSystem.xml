@@ -4,22 +4,136 @@
         <name>ErpManagerSystem</name>
     </assembly>
     <members>
+        <member name="T:ErpManagerSystem.Controllers.PuCommodityCategoryController">
+            <summary>
+            原材料分类表
+            </summary>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityCategoryController.PuCommodityCategory">
+            <summary>
+            获取原材料分类信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityCategoryController.PuCommodityCategoryById(System.Int32)">
+            <summary>
+            通过Id获取供应商信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityCategoryController.PuCommodityCategoryPaged(Model.Params.PuCommodityCategoryParams)">
+            <summary>
+            根据原材料类别名称进行原材料分类信息分页
+            </summary>
+            <param name="PuCommodityCategoryParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityCategoryController.CreatePuCommodityCategory(Model.Dtos.AddDto.PuCommodityCategoryAddDto)">
+            <summary>
+            添加原材料分类信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityCategoryController.Delete(System.Int32)">
+            <summary>
+            根据ID删除原材料分类信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityCategoryController.EditPuCommodityCategory(Model.Dtos.EditDto.PuCommodityCategoryEditDto)">
+            <summary>
+            修改原材料分类信息
+            </summary>
+            <param name="puCommodityCategoryEditDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ErpManagerSystem.Controllers.PuCommodityController">
+            <summary>
+            原材料表
+            </summary>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityController.PuCommodity">
+            <summary>
+            获取原材料信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityController.PuCommodityById(System.Int32)">
+            <summary>
+            通过Id获取原材料信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityController.PuCommodityPaged(Model.Params.PuCommodityParams)">
+            <summary>
+            根据原材料名称和产地进行分页
+            </summary>
+            <param name="PuCommodityParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityController.CreatePuCommodity(Model.Dtos.AddDto.PuCommodityAddDto)">
+            <summary>
+            添加原材料信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityController.Delete(System.Int32)">
+            <summary>
+            根据ID删除原材料
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuCommodityController.EditPuCommodity(Model.Dtos.EditDto.PuCommodityEditDto)">
+            <summary>
+            修改原材料信息
+            </summary>
+            <param name="puCommodityEditDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ErpManagerSystem.Controllers.PuSupplierController">
+            <summary>
+            供应商API  供应商档案员操作
+            </summary>
+        </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplier">
             <summary>
-            获取经销商信息
+            获取供应商信息
             </summary>
             <returns></returns>
         </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplierById(System.Int32)">
             <summary>
-            通过Id获取经销商信息
+            通过Id获取供应商信息
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplierPaged(Model.Params.PuSupplierParams)">
+            <summary>
+            供应商分页
+            </summary>
+            <param name="puSupplierParams"></param>
             <returns></returns>
         </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.CreatePuSupplier(Model.Dtos.AddDto.PuSupplierAddDto)">
             <summary>
-            添加经销商信息
+            添加供应商信息
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuSupplierController.Delete(System.Int32)">
+            <summary>
+            根据ID删除供应商
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuSupplierController.EditPuSupplier(Model.Dtos.EditDto.PuSupplierEditDto)">
+            <summary>
+            修改供应商信息
+            </summary>
+            <param name="puSupplierEditDto"></param>
             <returns></returns>
         </member>
     </members>

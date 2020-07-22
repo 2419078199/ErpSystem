@@ -42,7 +42,7 @@ namespace ErpManagerSystem
                 configure.UseLazyLoadingProxies();
             });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+            services.AddSwaggerSetup();
             services.AddAuthorizationSetup(_configuration);
         }
 
