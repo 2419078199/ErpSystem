@@ -1,4 +1,6 @@
-﻿namespace Common.Help
+﻿using System;
+
+namespace Common.Help
 {
     public class MessageModel<T>
     {
