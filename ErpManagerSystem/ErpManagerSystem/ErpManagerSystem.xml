@@ -34,6 +34,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductRecordController.GetIcProductRecords(Model.Params.IcProductRecordParams)">
+            <summary>
+            IcProductRecord 分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductRecordController.GetIcProductRecordById(System.Int32)">
+            <summary>
+            IcProductRecord ID查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductRecordController.AddIcProductRecord(Model.Dtos.AddDto.IcProductRecordAddDto)">
+            <summary>
+            IcProductRecord 添加实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductRecordController.DeleteIcProductRecord(System.Int32)">
+            <summary>
+            IcProductRecord 删除实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcProductRecordController.EditIcProductRecordId(Model.Dtos.EditDto.IcProductRecordEditDto)">
+            <summary>
+            IcProductRecord 修改实体
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ErpManagerSystem.Controllers.IcProductStockController.GetIcProductStocks(Model.Params.IcProductStockParams)">
             <summary>
             IcProductStock 分页查询
@@ -124,6 +154,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductMaterialController.GetPrProductMaterials(Model.Params.PrProductMaterialParams)">
+            <summary>
+            PrProductMaterial 分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductMaterialController.GetPrProductMaterialById(System.Int32)">
+            <summary>
+            PrProductMaterial ID查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductMaterialController.AddPrProductMaterial(Model.Dtos.AddDto.PrProductMaterialAddDto)">
+            <summary>
+            PrProductMaterial 添加实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductMaterialController.DeletePrProductMaterialId(System.Int32)">
+            <summary>
+            PrProductMaterial 删除实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PrProductMaterialController.EditIcProductRecordId(Model.Dtos.EditDto.PrProductMaterialEditDto)">
+            <summary>
+            PrProductMaterial 修改实体
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplier">
             <summary>
             获取经销商信息
@@ -139,6 +199,36 @@
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.CreatePuSupplier(Model.Dtos.AddDto.PuSupplierAddDto)">
             <summary>
             添加经销商信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmProductController.GetQmProducts(Model.Params.QmProductParams)">
+            <summary>
+            QmProduct 分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmProductController.GetQmProductById(System.Int32)">
+            <summary>
+            QmProduct ID查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmProductController.AddQmProduct(Model.Dtos.AddDto.QmProductAddDto)">
+            <summary>
+            QmProduct 添加实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmProductController.DeleteQmProduct(System.Int32)">
+            <summary>
+            QmProduct 删除实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmProductController.EditAuRecord(Model.Dtos.EditDto.QmProductEditDto)">
+            <summary>
+            QmProduct 修改实体
             </summary>
             <returns></returns>
         </member>

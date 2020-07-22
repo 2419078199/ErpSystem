@@ -7,6 +7,7 @@ namespace Model.Entitys
     {
         public PrProduct()
         {
+            IcProductRecord = new HashSet<IcProductRecord>();
             IcProductStock = new HashSet<IcProductStock>();
             PrProductTask = new HashSet<PrProductTask>();
             SlOrder = new HashSet<SlOrder>();
@@ -30,6 +31,7 @@ namespace Model.Entitys
         public string Remark { get; set; }
 
         public virtual PrProductCategory Category { get; set; }
+        public virtual ICollection<IcProductRecord> IcProductRecord { get; set; }
         public virtual ICollection<IcProductStock> IcProductStock { get; set; }
         public virtual ICollection<PrProductTask> PrProductTask { get; set; }
         public virtual ICollection<SlOrder> SlOrder { get; set; }

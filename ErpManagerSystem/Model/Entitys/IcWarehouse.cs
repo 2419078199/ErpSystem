@@ -9,6 +9,7 @@ namespace Model.Entitys
         {
             IcCommodityRecord = new HashSet<IcCommodityRecord>();
             IcCommodityStock = new HashSet<IcCommodityStock>();
+            IcProductRecord = new HashSet<IcProductRecord>();
             IcProductStock = new HashSet<IcProductStock>();
         }
 
@@ -25,6 +26,7 @@ namespace Model.Entitys
 
         public virtual ICollection<IcCommodityRecord> IcCommodityRecord { get; set; }
         public virtual ICollection<IcCommodityStock> IcCommodityStock { get; set; }
+        public virtual ICollection<IcProductRecord> IcProductRecord { get; set; }
         public virtual ICollection<IcProductStock> IcProductStock { get; set; }
     }
 }

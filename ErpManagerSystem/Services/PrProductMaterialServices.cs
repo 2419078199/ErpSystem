@@ -1,9 +1,12 @@
-﻿using IRepository;
+﻿using Common.Help;
+using IRepository;
 using IServices;
 using Model.Entitys;
+using Model.Params;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Services
 {
@@ -15,6 +18,13 @@ namespace Services
         {
             _prproductmaterialrepository = prproductmaterialrepository;
             base.CurrentRepository = prproductmaterialrepository;
+        }
+
+        public async Task<PagedList<PrProductMaterial>> GetPrProductMaterialPaged(PrProductMaterialParams prProductMaterialParams)
+        {
+            var prProductMaterials = _prproductmaterialrepository.GetEntitys();
+            //auRecords = auRecords.Where(a => a.CategoryId == prProductParams.CategoryId && a.Name.Contains(prProductParams.Name));
+            return await PagedList<PrProductMaterial>.CreatePagedList(prProductMaterials, prProductMaterialParams.PageSize, prProductMaterialParams.PageNum);
         }
     }
 }
