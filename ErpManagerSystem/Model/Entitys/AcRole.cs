@@ -17,5 +17,10 @@ namespace Model.Entitys
 
         public virtual ICollection<AcRolePermission> AcRolePermission { get; set; }
         public virtual ICollection<AcUserInfo> AcUserInfo { get; set; }
+
+        public static implicit operator AcRole(AcUserInfo v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
