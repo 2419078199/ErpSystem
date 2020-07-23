@@ -1,9 +1,10 @@
 ﻿using IRepository;
 using IServices;
 using Model.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using Common.Help;
+using Model.Params;
 
 namespace Services
 {
@@ -15,6 +16,12 @@ namespace Services
         {
             _slorderrepository = slorderrepository;
             base.CurrentRepository = slorderrepository;
+        }
+
+        public async Task<PagedList<SlOrder>> GetOrderPaged(SlOrderParams slOrderParams)
+        {
+            IQueryable<SlOrder> itemsOrders = _slorderrepository.GetEntitys();
+            return await PagedList<SlOrder>.CreatePagedList(itemsOrders, slOrderParams.PageSize, slOrderParams.PageNum);
         }
     }
 }

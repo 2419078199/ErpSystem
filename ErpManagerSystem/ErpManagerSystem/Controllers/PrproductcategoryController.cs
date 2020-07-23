@@ -18,12 +18,12 @@ namespace ErpManagerSystem.Controllers
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Authorize]
-    public class PrProductCategoryController:ControllerBase
+    public class PrproductcategoryController:ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IPrProductCategoryServices _prProductCategoryServices;
 
-        public PrProductCategoryController(IMapper mapper, IPrProductCategoryServices prProductCategoryServices)
+        public PrproductcategoryController(IMapper mapper, IPrProductCategoryServices prProductCategoryServices)
         {
             this._mapper = mapper;
             this._prProductCategoryServices = prProductCategoryServices;
@@ -42,10 +42,7 @@ namespace ErpManagerSystem.Controllers
             var res = new MessageModel<PrProductCategoryDto>();
             if (string.IsNullOrEmpty(prProductCategoryAddDto.Name))
             {
-                res.Success = false;
-                res.Msg = "请输入产品类型";
-                res.Code = 400;
-                return Ok(res);
+                return Ok(res.FailRequest(400, "Name不正确"));
             }
             var entity = _mapper.Map<PrProductCategory>(prProductCategoryAddDto);
             await _prProductCategoryServices.AddEntityAsync(entity);
@@ -73,10 +70,7 @@ namespace ErpManagerSystem.Controllers
             }
             if (string.IsNullOrEmpty(prProductCategoryEditDto.Name))
             {
-                res.Success = false;
-                res.Msg = "请输入产品类型";
-                res.Code = 400;
-                return Ok(res);
+                return Ok(res.FailRequest(400,"请输入产品类型"));
             }
             PrProductCategory entity = _mapper.Map<PrProductCategory>(prProductCategoryEditDto);
             await _prProductCategoryServices.EditEntityAsync(entity);

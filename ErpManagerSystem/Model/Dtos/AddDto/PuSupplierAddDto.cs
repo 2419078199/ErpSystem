@@ -18,5 +18,6 @@ namespace Model.Dtos.AddDto
         public string Credit { get; set; }
         public string Remark { get; set; }
         public int? OperatorId { get; set; }
+        public DateTime? OperateTime { get; set; }
     }
 }

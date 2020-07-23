@@ -14,8 +14,9 @@ using Model.Entitys;
 
 namespace ErpManagerSystem.Controllers
 {
-    [Route("api/login")]
+    
     [ApiController]
+    [Route("api/login")]
     public class LoginController : ControllerBase
     {
         private readonly IAcUserInfoServices _acUserInfoServices;
