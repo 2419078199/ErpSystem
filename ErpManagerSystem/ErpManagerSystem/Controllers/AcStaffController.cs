@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
+    /// <summary>
+    /// 员工表接口
+    /// </summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class AcStaffController:ControllerBase
