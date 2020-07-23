@@ -1,9 +1,10 @@
-﻿using IRepository;
+﻿using Common.Help;
+using IRepository;
 using IServices;
 using Model.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Model.Params;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Services
 {
@@ -15,6 +16,11 @@ namespace Services
         {
             _aurecordservicesrepository = aurecordservicesrepository;
             base.CurrentRepository = aurecordservicesrepository;
+        }
+        public async Task<PagedList<AuRecord>> GetRecordPaged(AuRecordParams auRecordParams)
+        {
+            IQueryable<AuRecord> itemRecords = _aurecordservicesrepository.GetEntitys();
+            return await PagedList<AuRecord>.CreatePagedList(itemRecords, auRecordParams.PageSize, auRecordParams.PageNum);
         }
     }
 }
