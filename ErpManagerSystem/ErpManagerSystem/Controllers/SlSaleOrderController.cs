@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +7,9 @@ using Model.Dtos.Dto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
@@ -25,6 +25,7 @@ namespace ErpManagerSystem.Controllers
             _slSaleOrderServices = slSaleOrderServices;
             _mapper = mapper;
         }
+
         [HttpGet(Name = nameof(GetSaleOrder))]
         public async Task<ActionResult<MessageModel<SlSaleOrderDto>>> GetSaleOrder([FromQuery] SlSaleOrderParams slSaleOrderParams)
         {
@@ -44,6 +45,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<SlSaleOrderDto>>(saleOrderPaged);
             return Ok(res);
         }
+
         [HttpPost]
         public async Task<ActionResult<MessageModel<SlSaleOrderDto>>> AddSaleOrder(SlSaleOrderAddDto slSaleOrderAddDto)
         {
@@ -54,6 +56,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<SlSaleOrderDto>(entity);
             return Ok(res);
         }
+
         private string CreateUrl(PagedType pagedType, SlSaleOrderParams slSaleOrderParams)
         {
             string url = string.Empty;
@@ -66,6 +69,7 @@ namespace ErpManagerSystem.Controllers
                         PageNum = slSaleOrderParams.PageNum - 1
                     });
                     break;
+
                 case PagedType.Next:
                     url = Url.Link(nameof(GetSaleOrder), new
                     {
@@ -73,6 +77,7 @@ namespace ErpManagerSystem.Controllers
                         PageNum = slSaleOrderParams.PageNum + 1
                     });
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pagedType), pagedType, null);
             }

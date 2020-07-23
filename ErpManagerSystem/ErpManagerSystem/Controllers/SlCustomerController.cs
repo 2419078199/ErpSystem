@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +7,8 @@ using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
 using Model.Dtos.EditDto;
 using Model.Entitys;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
@@ -40,7 +40,7 @@ namespace ErpManagerSystem.Controllers
             MessageModel<SlCustomerDto> res = new MessageModel<SlCustomerDto>();
             if (!await _slCustomerServices.ExistEntityAsync(a => a.Id == id))
             {
-                return NotFound(res.FailRequest(404,"请输入正确的Id"));
+                return NotFound(res.FailRequest(404, "请输入正确的Id"));
             }
 
             SlCustomer entity = await _slCustomerServices.GetEntityByIdAsync(id);
@@ -55,7 +55,7 @@ namespace ErpManagerSystem.Controllers
             SlCustomer entity = _mapper.Map<SlCustomer>(slCustomerAddDto);
             await _slCustomerServices.AddEntityAsync(entity);
             res.Data = _mapper.Map<SlCustomerDto>(entity);
-            return CreatedAtRoute(nameof(GetCustomerById), new {id = entity.Id}, res);
+            return CreatedAtRoute(nameof(GetCustomerById), new { id = entity.Id }, res);
         }
 
         [HttpDelete("{id}")]

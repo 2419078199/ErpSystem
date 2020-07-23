@@ -1,12 +1,9 @@
-﻿using Common.Help;
+using Common.Help;
 using IRepository;
 using IServices;
 using Model.Entitys;
 using Model.Params;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services

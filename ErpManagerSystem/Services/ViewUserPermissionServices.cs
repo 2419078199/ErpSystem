@@ -1,9 +1,6 @@
 ﻿using IRepository;
 using IServices;
 using Model.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Services
 {
@@ -11,7 +8,7 @@ namespace Services
     {
         private readonly IViewUserPermissionRepository _viewuserpermissionrepository;
 
-        public ViewUserPermissionServices(IViewUserPermissionRepository  viewuserpermissionrepository)
+        public ViewUserPermissionServices(IViewUserPermissionRepository viewuserpermissionrepository)
         {
             _viewuserpermissionrepository = viewuserpermissionrepository;
             base.CurrentRepository = viewuserpermissionrepository;

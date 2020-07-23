@@ -3,7 +3,6 @@ using IRepository;
 using IServices;
 using Model.Entitys;
 using Model.Params;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Services
@@ -17,10 +16,12 @@ namespace Services
             _aurecordservicesrepository = aurecordservicesrepository;
             base.CurrentRepository = aurecordservicesrepository;
         }
-        public async Task<PagedList<AuRecord>> GetRecordPaged(AuRecordParams auRecordParams)
+
+        public async Task<PagedList<AuRecord>> GetAuRecordPaged(AuRecordParams auRecordParams)
         {
-            IQueryable<AuRecord> itemRecords = _aurecordservicesrepository.GetEntitys();
-            return await PagedList<AuRecord>.CreatePagedList(itemRecords, auRecordParams.PageSize, auRecordParams.PageNum);
+            var auRecords = _aurecordservicesrepository.GetEntitys();
+            //auRecords = auRecords.Where(a => a.CategoryId == prProductParams.CategoryId && a.Name.Contains(prProductParams.Name));
+            return await PagedList<AuRecord>.CreatePagedList(auRecords, auRecordParams.PageSize, auRecordParams.PageNum);
         }
     }
 }

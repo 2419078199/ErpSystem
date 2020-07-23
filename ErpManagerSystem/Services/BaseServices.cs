@@ -1,10 +1,9 @@
-﻿using System;
+﻿using IRepository;
+using IServices;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using IRepository;
-using IServices;
-using Microsoft.EntityFrameworkCore;
 
 namespace Services
 {
@@ -14,7 +13,6 @@ namespace Services
 
         public BaseServices()
         {
-
         }
 
         public async Task<bool> DeleteEntityByIdAsync(int id)
@@ -23,6 +21,7 @@ namespace Services
             CurrentRepository.DeleteEntity(entity);
             return await CurrentRepository.SaveChangesAsync();
         }
+
         public async Task<bool> AddEntityAsync(T entity)
         {
             this.CurrentRepository.AddEntityAsync(entity);
@@ -60,6 +59,5 @@ namespace Services
         {
             return this.CurrentRepository.GetEntitys();
         }
-
     }
 }

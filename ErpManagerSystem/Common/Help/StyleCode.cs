@@ -9,7 +9,8 @@
             res.Success = false;
             return res;
         }
-        public static MessageModel<T> FailRequest<T>(this MessageModel<T> res,int Code,string Msg)
+
+        public static MessageModel<T> FailRequest<T>(this MessageModel<T> res, int Code, string Msg)
         {
             res.Code = Code;
             res.Msg = Msg;

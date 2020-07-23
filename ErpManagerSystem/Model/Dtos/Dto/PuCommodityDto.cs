@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Dtos.Dto
+﻿namespace Model.Dtos.Dto
 {
     public class PuCommodityDto
     {

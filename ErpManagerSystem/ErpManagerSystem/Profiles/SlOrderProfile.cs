@@ -6,7 +6,7 @@ using Model.Entitys;
 
 namespace ErpManagerSystem.Profiles
 {
-    public class SlOrderProfile:Profile
+    public class SlOrderProfile : Profile
     {
         public SlOrderProfile()
         {

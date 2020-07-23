@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Model.Entitys
 {
@@ -9,6 +8,7 @@ namespace Model.Entitys
         {
             AcStaff = new HashSet<AcStaff>();
             IcCommodityRecord = new HashSet<IcCommodityRecord>();
+            IcProductRecord = new HashSet<IcProductRecord>();
             PrProductMaterial = new HashSet<PrProductMaterial>();
             PrProductTask = new HashSet<PrProductTask>();
         }
@@ -19,6 +19,7 @@ namespace Model.Entitys
 
         public virtual ICollection<AcStaff> AcStaff { get; set; }
         public virtual ICollection<IcCommodityRecord> IcCommodityRecord { get; set; }
+        public virtual ICollection<IcProductRecord> IcProductRecord { get; set; }
         public virtual ICollection<PrProductMaterial> PrProductMaterial { get; set; }
         public virtual ICollection<PrProductTask> PrProductTask { get; set; }
     }

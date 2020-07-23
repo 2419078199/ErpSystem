@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +8,9 @@ using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
@@ -47,6 +47,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<SlOrderDto>>(orderPaged);
             return Ok(res);
         }
+
         [HttpGet("{id}", Name = nameof(GetOrderById))]
         public async Task<ActionResult<MessageModel<SlOrderDto>>> GetOrderById(int id)
         {
@@ -60,6 +61,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<SlOrderDto>(entity);
             return Ok(res);
         }
+
         [HttpPost]
         public async Task<ActionResult<MessageModel<SlOrderDto>>> AddOrder(SlOrderAddDto slOrderAddDto)
         {
@@ -70,6 +72,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<SlOrderDto>(entity);
             return CreatedAtRoute(nameof(GetOrderById), new { id = entity.Id }, res);
         }
+
         [HttpPut]
         public async Task<ActionResult<MessageModel<SlOrderDto>>> EditOrder(SlOrderEditDto slOrderEditDto)
         {
@@ -79,6 +82,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<SlOrderDto>(entity);
             return Ok(res);
         }
+
         private string CreateUrl(PagedType pagedType, SlOrderParams slOrderParams)
         {
             string url = string.Empty;
@@ -91,6 +95,7 @@ namespace ErpManagerSystem.Controllers
                         PageNum = slOrderParams.PageNum - 1
                     });
                     break;
+
                 case PagedType.Next:
                     url = Url.Link(nameof(GetOrders), new
                     {
@@ -98,6 +103,7 @@ namespace ErpManagerSystem.Controllers
                         PageNum = slOrderParams.PageNum + 1
                     });
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pagedType), pagedType, null);
             }

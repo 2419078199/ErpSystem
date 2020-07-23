@@ -1,15 +1,15 @@
-﻿using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Common.Help;
+﻿using Common.Help;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Ext
 {
-    public class ApiResponseHandler:AuthenticationHandler<AuthenticationSchemeOptions>
+    public class ApiResponseHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         public ApiResponseHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
         {
@@ -19,6 +19,7 @@ namespace ErpManagerSystem.Ext
         {
             throw new System.NotImplementedException();
         }
+
         protected override async Task HandleChallengeAsync(AuthenticationProperties properties)
         {
             Response.ContentType = "application/json";

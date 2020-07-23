@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Params
+﻿namespace Model.Params
 {
-     public class PrProductTaskParams:BaseParams
+    public class PrProductTaskParams : BaseParams
     {
-        public string  SearchInfo{ get; set; }
+        public string SearchInfo { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using Model.Entitys;
 
 namespace ErpManagerSystem.Profiles
 {
-    public class SlSaleOrderProfile:Profile
+    public class SlSaleOrderProfile : Profile
     {
         public SlSaleOrderProfile()
         {

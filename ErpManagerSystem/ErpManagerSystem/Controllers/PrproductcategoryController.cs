@@ -8,9 +8,7 @@ using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
 using Model.Dtos.EditDto;
 using Model.Entitys;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
@@ -18,16 +16,17 @@ namespace ErpManagerSystem.Controllers
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Authorize]
-    public class PrProductCategoryController:ControllerBase
+    public class PrproductcategoryController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IPrProductCategoryServices _prProductCategoryServices;
 
-        public PrProductCategoryController(IMapper mapper, IPrProductCategoryServices prProductCategoryServices)
+        public PrproductcategoryController(IMapper mapper, IPrProductCategoryServices prProductCategoryServices)
         {
             this._mapper = mapper;
             this._prProductCategoryServices = prProductCategoryServices;
         }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PrProductCategoryDto>>> GetPrProductCategoryInfo()
         {
@@ -36,6 +35,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<PrProductCategoryDto>>(list);
             return Ok(res);
         }
+
         [HttpPost]
         public async Task<ActionResult<MessageModel<PrProductCategoryDto>>> AddPrProductCategoryInfo(PrProductCategoryAddDto prProductCategoryAddDto)
         {
@@ -49,6 +49,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<PrProductCategoryDto>(entity);
             return Ok(res);
         }
+
         [HttpDelete("{PrProductCategoryId}")]
         public async Task<ActionResult<MessageModel<string>>> DeletePrProductCategory(int PrProductCategoryId)
         {
@@ -60,6 +61,7 @@ namespace ErpManagerSystem.Controllers
             await _prProductCategoryServices.DeleteEntityByIdAsync(PrProductCategoryId);
             return Ok(res);
         }
+
         [HttpPut]
         public async Task<ActionResult<MessageModel<PrProductCategoryDto>>> EditUserInfo(PrProductCategoryEditDto prProductCategoryEditDto)
         {
@@ -70,7 +72,7 @@ namespace ErpManagerSystem.Controllers
             }
             if (string.IsNullOrEmpty(prProductCategoryEditDto.Name))
             {
-                return Ok(res.FailRequest(400,"请输入产品类型"));
+                return Ok(res.FailRequest(400, "请输入产品类型"));
             }
             PrProductCategory entity = _mapper.Map<PrProductCategory>(prProductCategoryEditDto);
             await _prProductCategoryServices.EditEntityAsync(entity);

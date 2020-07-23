@@ -1,16 +1,16 @@
-﻿using System;
-using System.Text;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace ErpManagerSystem.Ext
 {
     public static class AuthorizationSetup
     {
-        public static void AddAuthorizationSetup(this IServiceCollection services,IConfiguration _configuration)
+        public static void AddAuthorizationSetup(this IServiceCollection services, IConfiguration _configuration)
         {
             services.AddAuthentication(configureOptions =>
             {

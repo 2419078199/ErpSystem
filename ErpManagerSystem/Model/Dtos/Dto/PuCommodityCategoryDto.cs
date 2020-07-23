@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model
+﻿namespace Model
 {
-   public  class PuCommodityCategoryDto
+    public class PuCommodityCategoryDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

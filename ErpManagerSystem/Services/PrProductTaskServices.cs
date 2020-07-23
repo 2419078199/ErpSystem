@@ -3,10 +3,7 @@ using IRepository;
 using IServices;
 using Model.Entitys;
 using Model.Params;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services
@@ -26,7 +23,7 @@ namespace Services
             IQueryable<PrProductTask> prProductTask = _iprproducttaskrepository.GetEntitys();
             if (!string.IsNullOrWhiteSpace(prProductTaskParams.SearchInfo))
             {
-                prProductTask = prProductTask.Where(a => a.No.Contains(prProductTaskParams.SearchInfo)||a.Batch.Contains(prProductTaskParams.SearchInfo));
+                prProductTask = prProductTask.Where(a => a.No.Contains(prProductTaskParams.SearchInfo) || a.Batch.Contains(prProductTaskParams.SearchInfo));
             }
             return await PagedList<PrProductTask>.CreatePagedList(prProductTask, prProductTaskParams.PageSize, prProductTaskParams.PageNum);
         }

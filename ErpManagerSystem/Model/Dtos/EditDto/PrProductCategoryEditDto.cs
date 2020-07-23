@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Dtos.EditDto
+﻿namespace Model.Dtos.EditDto
 {
     public class PrProductCategoryEditDto
     {

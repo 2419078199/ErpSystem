@@ -1,4 +1,3 @@
-using System;
 using Autofac;
 using AutoMapper;
 using ErpManagerSystem.Ext;
@@ -10,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Model.Entitys;
 using Newtonsoft.Json;
+using System;
 
 namespace ErpManagerSystem
 {
@@ -59,6 +59,7 @@ namespace ErpManagerSystem
                 endpoints.MapDefaultControllerRoute();
             });
         }
+
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule<AutofacModuleRegister>();

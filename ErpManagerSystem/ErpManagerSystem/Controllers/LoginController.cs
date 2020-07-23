@@ -1,9 +1,4 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Help;
+﻿using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +6,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Model.Dtos.Dto;
 using Model.Entitys;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
-    [Route("api/login")]
     [ApiController]
+    [Route("api/login")]
     public class LoginController : ControllerBase
     {
         private readonly IAcUserInfoServices _acUserInfoServices;
@@ -26,6 +26,7 @@ namespace ErpManagerSystem.Controllers
             _acUserInfoServices = acUserInfoServices;
             _configuration = configuration;
         }
+
         [HttpPost]
         public async Task<ActionResult<ActionResult<MessageModel<string>>>> Login(LoginDto loginDto)
         {

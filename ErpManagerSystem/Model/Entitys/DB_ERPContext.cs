@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Model.Entitys
 {
@@ -475,9 +473,11 @@ namespace Model.Entitys
 
             modelBuilder.Entity<IcProductRecord>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("ic_product_record");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasComment("编号");
 
                 entity.Property(e => e.Batch)
                     .HasColumnName("batch")
@@ -488,11 +488,6 @@ namespace Model.Entitys
                 entity.Property(e => e.DepartmentId)
                     .HasColumnName("department_id")
                     .HasComment("部门编号");
-
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .HasComment("编号")
-                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.IsIn)
                     .HasColumnName("is_in")
@@ -558,27 +553,27 @@ namespace Model.Entitys
                     .HasComment("仓库编号");
 
                 entity.HasOne(d => d.Department)
-                    .WithMany()
+                    .WithMany(p => p.IcProductRecord)
                     .HasForeignKey(d => d.DepartmentId)
                     .HasConstraintName("FK_ic_product_record_ac_department");
 
                 entity.HasOne(d => d.Operator)
-                    .WithMany()
+                    .WithMany(p => p.IcProductRecordOperator)
                     .HasForeignKey(d => d.OperatorId)
                     .HasConstraintName("FK_ic_product_record_ac_staff1");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany()
+                    .WithMany(p => p.IcProductRecord)
                     .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK_ic_product_record_pr_product");
 
                 entity.HasOne(d => d.Staff)
-                    .WithMany()
+                    .WithMany(p => p.IcProductRecordStaff)
                     .HasForeignKey(d => d.StaffId)
                     .HasConstraintName("FK_ic_product_record_ac_staff");
 
                 entity.HasOne(d => d.Warehouse)
-                    .WithMany()
+                    .WithMany(p => p.IcProductRecord)
                     .HasForeignKey(d => d.WarehouseId)
                     .HasConstraintName("FK_ic_product_record_ic_warehouse");
             });
@@ -630,8 +625,7 @@ namespace Model.Entitys
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .HasComment("编号")
-                    .ValueGeneratedNever();
+                    .HasComment("编号");
 
                 entity.Property(e => e.Address)
                     .HasColumnName("address")

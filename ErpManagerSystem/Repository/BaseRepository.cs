@@ -1,10 +1,10 @@
-﻿using System;
+﻿using IRepository;
+using Microsoft.EntityFrameworkCore;
+using Model.Entitys;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using IRepository;
-using Microsoft.EntityFrameworkCore;
-using Model.Entitys;
 
 namespace Repository
 {
@@ -51,6 +51,7 @@ namespace Repository
         {
             return DbErpContext.Set<T>().Where(whereLamda);
         }
+
         //Task<bool> IBaseRepository<T>.SaveChangesAsync()
         //{
         //    return SaveChangesAsync();

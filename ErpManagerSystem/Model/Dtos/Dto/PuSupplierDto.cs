@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Dtos.Dto
+﻿namespace Model.Dtos.Dto
 {
-     public class PuSupplierDto
+    public class PuSupplierDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

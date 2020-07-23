@@ -1,7 +1,6 @@
 ﻿namespace Model.Params
 {
-    public class SlOrderParams:BaseParams
+    public class SlOrderParams : BaseParams
     {
-        
     }
 }

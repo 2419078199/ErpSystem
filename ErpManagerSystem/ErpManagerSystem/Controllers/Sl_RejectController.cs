@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +7,9 @@ using Model.Dtos.Dto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
@@ -25,6 +25,7 @@ namespace ErpManagerSystem.Controllers
             _slRejectServices = slRejectServices;
             _mapper = mapper;
         }
+
         [HttpGet(Name = nameof(GetReject))]
         public async Task<ActionResult<MessageModel<IEnumerable<SlRejectDto>>>> GetReject([FromQuery] RejectParams rejectParams)
         {
@@ -44,6 +45,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<SlRejectDto>>(rejectPaged);
             return Ok(res);
         }
+
         [HttpGet("{id}", Name = nameof(GetRejectById))]
         public async Task<ActionResult<MessageModel<SlRejectDto>>> GetRejectById(int id)
         {
@@ -56,6 +58,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<SlRejectDto>(entity);
             return Ok(res);
         }
+
         [HttpPost]
         public async Task<ActionResult<MessageModel<SlRejectDto>>> AddReject(SlRejectAddDto slRejectAddDto)
         {
@@ -66,6 +69,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<SlRejectDto>(entity);
             return CreatedAtRoute(nameof(GetRejectById), new { id = entity.Id }, res);
         }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<MessageModel<string>>> DeleteReject(int id)
         {
@@ -78,6 +82,7 @@ namespace ErpManagerSystem.Controllers
             await _slRejectServices.DeleteEntityAsync(entity);
             return Ok(res);
         }
+
         private string CreateUrl(PagedType pagedType, RejectParams rejectParams)
         {
             string url = string.Empty;
@@ -90,6 +95,7 @@ namespace ErpManagerSystem.Controllers
                         PageNum = rejectParams.PageNum - 1
                     });
                     break;
+
                 case PagedType.Next:
                     url = Url.Link(nameof(GetReject), new
                     {
@@ -97,6 +103,7 @@ namespace ErpManagerSystem.Controllers
                         PageNum = rejectParams.PageNum + 1
                     });
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pagedType), pagedType, null);
             }

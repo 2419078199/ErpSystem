@@ -7,6 +7,6 @@ namespace IServices
 {
     public interface IAuRecordServices : IBaseServices<AuRecord>
     {
-        Task<PagedList<AuRecord>> GetRecordPaged(AuRecordParams auRecordParams);
+        Task<PagedList<AuRecord>> GetAuRecordPaged(AuRecordParams auRecordParams);
     }
 }

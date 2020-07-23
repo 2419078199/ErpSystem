@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +11,8 @@ using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
@@ -34,6 +32,7 @@ namespace ErpManagerSystem.Controllers
             _mapper = mapper;
             _pusupplierservices = pusupplierservices;
         }
+
         /// <summary>
         /// 获取供应商信息
         /// </summary>
@@ -51,7 +50,7 @@ namespace ErpManagerSystem.Controllers
         /// 通过Id获取供应商信息
         /// </summary>
         /// <returns></returns>
-        [HttpGet("{id}",Name =nameof(PuSupplierById))]
+        [HttpGet("{id}", Name = nameof(PuSupplierById))]
         public async Task<ActionResult<PuSupplierDto>> PuSupplierById(int id)
         {
             MessageModel<PuSupplierDto> res = new MessageModel<PuSupplierDto>();
@@ -93,7 +92,7 @@ namespace ErpManagerSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<MessageModel<PuSupplierDto>>> CreatePuSupplier(PuSupplierAddDto puSupplierAddDto)
         {
-           var res = new MessageModel<PuSupplierDto>();
+            var res = new MessageModel<PuSupplierDto>();
 
             var entity = _mapper.Map<PuSupplier>(puSupplierAddDto);
 
@@ -101,7 +100,7 @@ namespace ErpManagerSystem.Controllers
 
             res.Data = _mapper.Map<PuSupplierDto>(entity);
 
-            return CreatedAtRoute(nameof(PuSupplierById), new { id = entity.Id }, res); 
+            return CreatedAtRoute(nameof(PuSupplierById), new { id = entity.Id }, res);
         }
 
         /// <summary>
@@ -139,7 +138,6 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<PuSupplierDto>(entity);
             return Ok(res);
         }
-
 
         private string CreateLink(PagedType pagedType, PuSupplierParams puSupplierParams)
         {

@@ -1,12 +1,9 @@
-﻿using Common.Help;
+using Common.Help;
 using IRepository;
 using IServices;
 using Model.Entitys;
 using Model.Params;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services
@@ -21,7 +18,7 @@ namespace Services
             base.CurrentRepository = pucommodityrepository;
         }
 
-         public async Task<PagedList<PuCommodity>> PuCommodityInfoPaged(PuCommodityParams puCommodityparams)
+        public async Task<PagedList<PuCommodity>> PuCommodityInfoPaged(PuCommodityParams puCommodityparams)
         {
             IQueryable<PuCommodity> pucommodityinfo = _pucommodityrepository.GetEntitys();
             if (!string.IsNullOrWhiteSpace(puCommodityparams.Name))

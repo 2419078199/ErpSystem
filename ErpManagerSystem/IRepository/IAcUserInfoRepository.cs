@@ -4,6 +4,5 @@ namespace IRepository
 {
     public interface IAcUserInfoRepository : IBaseRepository<AcUserInfo>
     {
-        
     }
 }

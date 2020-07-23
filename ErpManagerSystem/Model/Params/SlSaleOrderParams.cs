@@ -1,7 +1,6 @@
 ﻿namespace Model.Params
 {
-    public class SlSaleOrderParams:BaseParams
+    public class SlSaleOrderParams : BaseParams
     {
-        
     }
 }

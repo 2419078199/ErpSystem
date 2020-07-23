@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Dtos.AddDto
+﻿namespace Model.Dtos.AddDto
 {
     public class PuCommodityCategoryAddDto
     {

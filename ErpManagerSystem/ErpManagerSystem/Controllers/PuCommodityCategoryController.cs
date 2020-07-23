@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Authorization;
@@ -15,24 +11,29 @@ using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
     /// <summary>
     /// 原材料分类表
     /// </summary>
-    [Route("api/[controller]/[action]")]
+
     [ApiController]
+    [Route("api/[controller]/[action]")]
     [Authorize]
     public class PuCommodityCategoryController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IPuCommodityCategoryServices _puCommodityCategoryServices;
 
-        public PuCommodityCategoryController(IMapper mapper, IPuCommodityCategoryServices puCommodityCategoryServices) {
+        public PuCommodityCategoryController(IMapper mapper, IPuCommodityCategoryServices puCommodityCategoryServices)
+        {
             _mapper = mapper;
             _puCommodityCategoryServices = puCommodityCategoryServices;
         }
+
         /// <summary>
         /// 获取原材料分类信息
         /// </summary>
@@ -103,8 +104,6 @@ namespace ErpManagerSystem.Controllers
             return CreatedAtRoute(nameof(PuCommodityCategoryById), new { id = entity.Id }, res);
         }
 
-
-
         /// <summary>
         /// 根据ID删除原材料分类信息
         /// </summary>
@@ -140,6 +139,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<PuCommodityCategoryDto>(entity);
             return Ok(res);
         }
+
         private string CreateLink(PagedType pagedType, PuCommodityCategoryParams PuCommodityCategoryParams)
         {
             switch (pagedType)

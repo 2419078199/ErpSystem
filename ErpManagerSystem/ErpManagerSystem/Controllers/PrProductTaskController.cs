@@ -9,9 +9,7 @@ using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
@@ -19,7 +17,7 @@ namespace ErpManagerSystem.Controllers
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Authorize]
-    public class PrProductTaskController:ControllerBase
+    public class PrProductTaskController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IPrProductTaskServices _prProductTaskServices;
@@ -29,6 +27,7 @@ namespace ErpManagerSystem.Controllers
             _mapper = mapper;
             _prProductTaskServices = prProductTaskServices;
         }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PrProductTaskDto>>> GetPrProductTasks([FromQuery] PrProductTaskParams prProductTaskParams)
         {
@@ -48,6 +47,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<PrProductTaskDto>>(list);
             return Ok(res);
         }
+
         [HttpGet("{id}", Name = nameof(GetPrProductTasksById))]
         public async Task<ActionResult<IEnumerable<PrProductTaskDto>>> GetPrProductTasksById(int id)
         {
@@ -60,6 +60,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<PrProductTaskDto>(entity);
             return Ok(res);
         }
+
         [HttpPost]
         public async Task<ActionResult<MessageModel<PrProductTaskDto>>> AddPrProductTask(PrProductTaskAddDto prProductTaskAddDto)
         {
@@ -95,6 +96,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<PrProductTaskDto>(entity);
             return Ok(res);
         }
+
         private string CreateLink(PagedType pagedType, PrProductTaskParams prProductTaskParams)
         {
             switch (pagedType)

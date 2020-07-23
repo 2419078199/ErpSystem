@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Model.Entitys;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Model.Entitys;
 
 namespace IRepository
 {
@@ -21,6 +21,7 @@ namespace IRepository
         Task<T> GetEntityByIdAsync(int id);
 
         IQueryable<T> GetEntitys();
+
         IQueryable<T> GetEntitys(Expression<Func<T, bool>> whereLamda);
 
         Task<bool> SaveChangesAsync();

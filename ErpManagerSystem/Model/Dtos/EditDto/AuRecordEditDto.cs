@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Model.Dtos.AddDto
+namespace Model.Dtos.EditDto
 {
-    public class AuRecordDto
+    public class AuRecordEditDto
     {
         public int Id { get; set; }
         public int? SourceType { get; set; }

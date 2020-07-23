@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.IO;
 using System.Reflection;
-using Autofac;
 using Module = Autofac.Module;
 
 namespace ErpManagerSystem.Ext
 {
-    public class AutofacModuleRegister:Module
+    public class AutofacModuleRegister : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

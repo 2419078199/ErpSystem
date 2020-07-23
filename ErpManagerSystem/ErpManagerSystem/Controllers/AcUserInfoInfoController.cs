@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +11,8 @@ using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
@@ -30,6 +29,7 @@ namespace ErpManagerSystem.Controllers
             _acUserInfoServices = acUserInfoServices;
             _mapper = mapper;
         }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AcUserInfoDto>>> GetUserInfo()
         {
@@ -38,6 +38,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<AcUserInfoDto>>(list);
             return Ok(res);
         }
+
         [HttpGet("{id}", Name = nameof(GetUserInfoById))]
         public async Task<ActionResult<IEnumerable<AcUserInfoDto>>> GetUserInfoById(int id)
         {
@@ -50,6 +51,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<AcUserInfoDto>(entity);
             return Ok(res);
         }
+
         [HttpGet(Name = nameof(GetUserInfoPaged))]
         public async Task<ActionResult<ActionResult<IEnumerable<AcUserInfoDto>>>> GetUserInfoPaged(
             [FromQuery] AcUserInfoParams acUserInfoParams)

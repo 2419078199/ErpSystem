@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Common.Help;
 using IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model.Dtos.AddDto;
+using Model.Dtos.Dto;
+using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,28 +16,35 @@ namespace ErpManagerSystem.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Authorize]
     public class AuRecordController : ControllerBase
     {
-        private readonly IAuRecordServices _auRecordServices;
         private readonly IMapper _mapper;
+        private readonly IAuRecordServices _auRecordServices;
+        private object recordPaged;
 
-        public AuRecordController(IAuRecordServices auRecordServices, IMapper mapper)
+        public AuRecordController(IMapper mapper, IAuRecordServices auRecordServices)
         {
-            _auRecordServices = auRecordServices;
             _mapper = mapper;
+            _auRecordServices = auRecordServices;
         }
-        [HttpGet(Name = nameof(GetRecord))]
-        public async Task<ActionResult<MessageModel<IEnumerable<AuRecordDto>>>> GetRecord([FromQuery] AuRecordParams auRecordParams)
+
+        /// <summary>
+        /// AuRecord 分页查询
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<AuRecordDto>>> GetAuRecords([FromQuery] AuRecordParams auRecordParams)
         {
-            MessageModel<IEnumerable<AuRecordDto>> res = new MessageModel<IEnumerable<AuRecordDto>>();
-            PagedList<AuRecord> recordPaged = await _auRecordServices.GetRecordPaged(auRecordParams);
-            string previousLink = recordPaged.HasPrevious ? CreateUrl(PagedType.Previous, auRecordParams) : null;
-            string nextLink = recordPaged.HasNext ? CreateUrl(PagedType.Next, auRecordParams) : null;
+            var res = new MessageModel<IEnumerable<AuRecordDto>>();
+            var list = await _auRecordServices.GetAuRecordPaged(auRecordParams);
+            string previousLink = list.HasPrevious ? CreateLink(PagedType.Previous, auRecordParams) : null;
+            string nextLink = list.HasNext ? CreateLink(PagedType.Next, auRecordParams) : null;
             var pagination = new
             {
-                currentPage = recordPaged.PageNum,
-                totalPage = recordPaged.TotalPage,
-                totalCount = recordPaged.TotalCount,
+                currentPage = list.PageNum,
+                totalPage = list.TotalPage,
+                totalCount = list.TotalCount,
                 previousLink,
                 nextLink
             };
@@ -43,6 +52,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<AuRecordDto>>(recordPaged);
             return Ok(res);
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<MessageModel<AuRecord>>> GetRecordById(int id)
         {
@@ -56,29 +66,90 @@ namespace ErpManagerSystem.Controllers
             return Ok(res);
         }
 
-        private string CreateUrl(PagedType pagedType, AuRecordParams auRecordParams)
+        /// <summary>
+        /// AuRecord ID查询
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{id}", Name = nameof(GetAuRecordById))]
+        public async Task<ActionResult<IEnumerable<AuRecordDto>>> GetAuRecordById(int id)
         {
-            string url = string.Empty;
+            var res = new MessageModel<AuRecordDto>();
+            if (!await _auRecordServices.ExistEntityAsync(a => a.Id == id))
+            {
+                return NotFound(StyleCode.NotFound(res));
+            }
+            var entity = await _auRecordServices.GetEntityByIdAsync(id);
+            res.Data = _mapper.Map<AuRecordDto>(entity);
+            return Ok(res);
+        }
+
+        /// <summary>
+        /// AuRecord 添加实体
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult<MessageModel<AuRecordDto>>> AddAuRecord(AuRecordAddDto auRecordAddDto)
+        {
+            var res = new MessageModel<Model.Dtos.Dto.AuRecordDto>();
+            var entity = _mapper.Map<AuRecord>(auRecordAddDto);
+            await _auRecordServices.AddEntityAsync(entity);
+            res.Data = _mapper.Map<Model.Dtos.Dto.AuRecordDto>(entity);
+            return Ok(res);
+        }
+
+        /// <summary>
+        /// AuRecord 删除实体
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("{AuRecordtId}")]
+        public async Task<ActionResult<MessageModel<string>>> DeleteAuRecord(int AuRecordtId)
+        {
+            var res = new MessageModel<string>();
+            if (!await _auRecordServices.ExistEntityAsync(a => a.Id == AuRecordtId))
+            {
+                return NotFound(StyleCode.NotFound(res));
+            }
+            await _auRecordServices.DeleteEntityByIdAsync(AuRecordtId);
+            return Ok(res);
+        }
+
+        /// <summary>
+        /// AuRecord 修改实体
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<ActionResult<MessageModel<AuRecordDto>>> EditAuRecord(AuRecordEditDto auRecordEditDto)
+        {
+            var res = new MessageModel<Model.Dtos.Dto.AuRecordDto>();
+            if (!await _auRecordServices.ExistEntityAsync(a => a.Id == auRecordEditDto.Id))
+            {
+                return NotFound(StyleCode.NotFound(res));
+            }
+            var entity = _mapper.Map<AuRecord>(auRecordEditDto);
+            await _auRecordServices.EditEntityAsync(entity);
+            res.Data = _mapper.Map<AuRecordDto>(entity);
+            return Ok(res);
+        }
+
+        private string CreateLink(PagedType pagedType, AuRecordParams auRecordParams)
+        {
             switch (pagedType)
             {
                 case PagedType.Previous:
-                    url = Url.Link(nameof(GetRecord), new
+                    return Url.Link(nameof(GetAuRecords), new
                     {
-                        PageSize = auRecordParams.PageSize,
-                        PageNum = auRecordParams.PageNum - 1
+                        PageNum = auRecordParams.PageNum - 1,
+                        PageSize = auRecordParams.PageSize
                     });
-                    break;
+
                 case PagedType.Next:
-                    url = Url.Link(nameof(GetRecord), new
+                    return Url.Link(nameof(GetAuRecords), new
                     {
-                        PageSize = auRecordParams.PageSize,
-                        PageNum = auRecordParams.PageNum + 1
+                        PageNum = auRecordParams.PageNum + 1,
+                        PageSize = auRecordParams.PageSize
                     });
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(pagedType), pagedType, null);
             }
-            return url;
+            return string.Empty;
         }
     }
 }

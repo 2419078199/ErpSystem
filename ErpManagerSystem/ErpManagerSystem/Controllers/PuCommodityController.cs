@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Authorization;
@@ -15,24 +11,29 @@ using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
 {
     /// <summary>
     /// 原材料表
     /// </summary>
-    [Route("api/[controller]/[action]")]
+
     [ApiController]
+    [Route("api/[controller]/[action]")]
     [Authorize]
     public class PuCommodityController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IPuCommodityServices _puCommodityServices;
 
-        public PuCommodityController(IMapper mapper, IPuCommodityServices puCommodityServices) {
+        public PuCommodityController(IMapper mapper, IPuCommodityServices puCommodityServices)
+        {
             _mapper = mapper;
             _puCommodityServices = puCommodityServices;
         }
+
         /// <summary>
         /// 获取原材料信息
         /// </summary>
