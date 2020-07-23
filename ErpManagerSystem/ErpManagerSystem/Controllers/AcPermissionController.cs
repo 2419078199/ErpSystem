@@ -32,30 +32,30 @@ namespace ErpManagerSystem.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Profiles.AcPermissionDto>>> GetAcPermission()
+        public async Task<ActionResult<IEnumerable<AcPermissionDto>>> GetAcPermission()
         {
-            var res = new MessageModel<IEnumerable<Profiles.AcPermissionDto>>();
+            var res = new MessageModel<IEnumerable<AcPermissionDto>>();
             var list = await _acPermissionServices.GetEntitys().ToListAsync();
-            res.Data = _mapper.Map<IEnumerable<Profiles.AcPermissionDto>>(list);
+            res.Data = _mapper.Map<IEnumerable<AcPermissionDto>>(list);
             return Ok(res);
         }
         [HttpGet("{id}", Name = nameof(GetAcPermissionById))]
-        public async Task<ActionResult<IEnumerable<Profiles.AcPermissionDto>>> GetAcPermissionById(int id)
+        public async Task<ActionResult<IEnumerable<AcPermissionDto>>> GetAcPermissionById(int id)
         {
-            MessageModel<Profiles.AcPermissionDto> res = new MessageModel<Profiles.AcPermissionDto>();
+            MessageModel<AcPermissionDto> res = new MessageModel<AcPermissionDto>();
             if (!await _acPermissionServices.ExistEntityAsync(a => a.Id == id))
             {
                 return NotFound(StyleCode.NotFound(res));
             }
             AcPermission entity = await _acPermissionServices.GetEntityByIdAsync(id);
-            res.Data = _mapper.Map<Profiles.AcPermissionDto>(entity);
+            res.Data = _mapper.Map<AcPermissionDto>(entity);
             return Ok(res);
         }
         [HttpGet(Name = nameof(GetAcPermissionPaged))]
-        public async Task<ActionResult<ActionResult<IEnumerable<Profiles.AcPermissionDto>>>> GetAcPermissionPaged(
+        public async Task<ActionResult<ActionResult<IEnumerable<AcPermissionDto>>>> GetAcPermissionPaged(
             [FromQuery] AcPermissionParams acPermissionParams)
         {
-            var res = new MessageModel<IEnumerable<Profiles.AcPermissionDto>>();
+            var res = new MessageModel<IEnumerable<AcPermissionDto>>();
             PagedList<AcPermission> list = await _acPermissionServices.GetAcPermissionPaged(acPermissionParams);
             string previousLink = list.HasPrevious ? CreateLink(PagedType.Previous, acPermissionParams) : null;
             string nextLink = list.HasNext ? CreateLink(PagedType.Next, acPermissionParams) : null;
@@ -68,17 +68,17 @@ namespace ErpManagerSystem.Controllers
                 nextLink
             };
             HttpContext.Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(pagination));
-            res.Data = _mapper.Map<IEnumerable<Profiles.AcPermissionDto>>(list);
+            res.Data = _mapper.Map<IEnumerable<AcPermissionDto>>(list);
             return Ok(res);
         }
 
         [HttpPost]
-        public async Task<ActionResult<MessageModel<Profiles.AcPermissionDto>>> AddAcPermission(AcPermissionAddDto acPermissionAddDto)
+        public async Task<ActionResult<MessageModel<AcPermissionDto>>> AddAcPermission(AcPermissionAddDto acPermissionAddDto)
         {
-            var res = new MessageModel<Profiles.AcPermissionDto>();
+            var res = new MessageModel<AcPermissionDto>();
             var entity = _mapper.Map<AcPermission>(acPermissionAddDto);
             await _acPermissionServices.AddEntityAsync(entity);
-            res.Data = _mapper.Map<Profiles.AcPermissionDto>(entity);
+            res.Data = _mapper.Map<AcPermissionDto>(entity);
             return CreatedAtRoute(nameof(GetAcPermissionById), new { id = entity.Id }, res.Data);
         }
 
@@ -95,16 +95,16 @@ namespace ErpManagerSystem.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<MessageModel<Profiles.AcPermissionDto>>> EditAcPermission(AcPermissionEditDto acPermissionEditDto)
+        public async Task<ActionResult<MessageModel<AcPermissionDto>>> EditAcPermission(AcPermissionEditDto acPermissionEditDto)
         {
-            MessageModel<Profiles.AcPermissionDto> res = new MessageModel<Profiles.AcPermissionDto>();
+            MessageModel<AcPermissionDto> res = new MessageModel<AcPermissionDto>();
             if (!await _acPermissionServices.ExistEntityAsync(a => a.Id == acPermissionEditDto.Id))
             {
                 return NotFound(StyleCode.NotFound(res));
             }
             AcPermission entity = _mapper.Map<AcPermission>(acPermissionEditDto);
             await _acPermissionServices.EditEntityAsync(entity);
-            res.Data = _mapper.Map<Profiles.AcPermissionDto>(entity);
+            res.Data = _mapper.Map<AcPermissionDto>(entity);
             return Ok(res);
         }
 

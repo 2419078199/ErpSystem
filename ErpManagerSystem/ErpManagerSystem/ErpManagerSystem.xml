@@ -34,6 +34,94 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:ErpManagerSystem.Controllers.IcCommodityRecordController">
+            <summary>
+            原材料审批外键表接口
+            </summary>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityRecordController.IcCommodityRecord">
+            <summary>
+            获取原材料审批外键表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityRecordController.IcCommodityRecordById(System.Int32)">
+            <summary>
+            通过Id获取原材料审批外键表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityRecordController.IcCommodityRecordPaged(Model.Params.IcCommodityRecordParams)">
+            <summary>
+            原材料审批外键表分页
+            </summary>
+            <param name="puSupplierParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityRecordController.CreateIcCommodityRecord(Model.Dtos.AddDto.IcCommodityRecordAddDto)">
+            <summary>
+            添加原材料审批外键表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityRecordController.Delete(System.Int32)">
+            <summary>
+            根据ID删除原材料审批外键表
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityRecordController.EditIcCommodityRecord(Model.Dtos.EditDto.IcCommodityRecordEditDto)">
+            <summary>
+            修改原材料审批外键表信息
+            </summary>
+            <param name="puSupplierEditDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ErpManagerSystem.Controllers.IcCommodityStockController">
+            <summary>
+            原材料仓库外键表
+            </summary>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityStockController.IcCommodityStock">
+            <summary>
+            获取原材料仓库外键信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityStockController.IcCommodityStockById(System.Int32)">
+            <summary>
+            通过Id获取原材料仓库外键信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityStockController.IcCommodityStockPaged(Model.Params.IcCommodityStockParams)">
+            <summary>
+            原材料仓库外键分页
+            </summary>
+            <param name="puSupplierParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityStockController.CreateIcCommodityStock(Model.Dtos.AddDto.IcCommodityStockAddDto)">
+            <summary>
+            添加原材料仓库外键表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityStockController.Delete(System.Int32)">
+            <summary>
+            根据ID删除原材料仓库外键
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.IcCommodityStockController.EditIcCommodityStock(Model.Dtos.EditDto.IcCommodityStockEditDto)">
+            <summary>
+            修改原材料仓库外键信息
+            </summary>
+            <param name="puSupplierEditDto"></param>
+            <returns></returns>
+        </member>
         <member name="M:ErpManagerSystem.Controllers.IcProductRecordController.GetIcProductRecords(Model.Params.IcProductRecordParams)">
             <summary>
             IcProductRecord 分页查询
@@ -272,6 +360,55 @@
             <param name="puCommodityEditDto"></param>
             <returns></returns>
         </member>
+        <member name="T:ErpManagerSystem.Controllers.PuOrderController">
+            <summary>
+            订单表接口
+            </summary>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuOrderController.PuOrder">
+            <summary>
+            获取订单信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuOrderController.PuOrderById(System.Int32)">
+            <summary>
+            通过Id获取订单信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuOrderController.PuOrderPaged(Model.Params.PuOrderParams)">
+            <summary>
+            订单分页
+            </summary>
+            <param name="puSupplierParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuOrderController.CreatePuOrder(Model.Dtos.AddDto.PuOrderAddDto)">
+            <summary>
+            添加订单表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuOrderController.Delete(System.Int32)">
+            <summary>
+            根据ID删除订单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.PuOrderController.EditPuOrder(Model.Dtos.EditDto.PuOrderEditDto)">
+            <summary>
+            修改订单信息
+            </summary>
+            <param name="puSupplierEditDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ErpManagerSystem.Controllers.PuSupplierController">
+            <summary>
+            供应商API  供应商档案员操作
+            </summary>
+        </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplier">
             <summary>
             获取供应商信息
@@ -293,7 +430,7 @@
         </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.CreatePuSupplier(Model.Dtos.AddDto.PuSupplierAddDto)">
             <summary>
-            添加经销商信息
+            添加供应商信息
             </summary>
             <returns></returns>
         </member>
@@ -307,6 +444,50 @@
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.EditPuSupplier(Model.Dtos.EditDto.PuSupplierEditDto)">
             <summary>
             修改供应商信息
+            </summary>
+            <param name="puSupplierEditDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ErpManagerSystem.Controllers.QmCommodityController">
+            <summary>
+            原材料质检表接口
+            </summary>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmCommodityController.QmCommodity">
+            <summary>
+            获取原材料质检信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmCommodityController.QmCommodityById(System.Int32)">
+            <summary>
+            通过Id获取原材料质检信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmCommodityController.QmCommodityPaged(Model.Params.QmCommodityParams)">
+            <summary>
+            原材料质检分页
+            </summary>
+            <param name="puSupplierParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmCommodityController.CreateQmCommodity(Model.Dtos.AddDto.QmCommodityAddDto)">
+            <summary>
+            添加原材料质检表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmCommodityController.Delete(System.Int32)">
+            <summary>
+            根据ID删除原材料质检
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ErpManagerSystem.Controllers.QmCommodityController.EditQmCommodity(Model.Dtos.EditDto.QmCommodityEditDto)">
+            <summary>
+            修改原材料质检信息
             </summary>
             <param name="puSupplierEditDto"></param>
             <returns></returns>

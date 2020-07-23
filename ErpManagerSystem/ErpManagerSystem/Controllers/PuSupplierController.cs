@@ -18,8 +18,12 @@ using Newtonsoft.Json;
 
 namespace ErpManagerSystem.Controllers
 {
-    [ApiController]
+    /// <summary>
+    /// 供应商API  供应商档案员操作
+    /// </summary>
     [Route("api/[controller]/[action]")]
+    [ApiController]
+    [Authorize]
     public class PuSupplierController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -55,6 +59,7 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<PuSupplierDto>(pusupplier);
             return Ok(res);
         }
+
         /// <summary>
         /// 供应商分页
         /// </summary>
@@ -80,20 +85,21 @@ namespace ErpManagerSystem.Controllers
             res.Data = _mapper.Map<IEnumerable<PuSupplierDto>>(list);
             return Ok(res);
         }
+
         /// <summary>
-        /// 添加经销商信息
+        /// 添加供应商信息
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<MessageModel<PuSupplierAddDto>>> CreatePuSupplier(PuSupplierAddDto puSupplierAddDto)
+        public async Task<ActionResult<MessageModel<PuSupplierDto>>> CreatePuSupplier(PuSupplierAddDto puSupplierAddDto)
         {
-            MessageModel<PuSupplierAddDto> res = new MessageModel<PuSupplierAddDto>();
+            var res = new MessageModel<PuSupplierDto>();
 
-            PuSupplier entity = _mapper.Map<PuSupplier>(puSupplierAddDto);
+            var entity = _mapper.Map<PuSupplier>(puSupplierAddDto);
 
             await _pusupplierservices.AddEntityAsync(entity);
 
-            res.Data = _mapper.Map<PuSupplierAddDto>(entity);
+            res.Data = _mapper.Map<PuSupplierDto>(entity);
 
             return CreatedAtRoute(nameof(PuSupplierById), new { id = entity.Id }, res);
         }
@@ -157,4 +163,3 @@ namespace ErpManagerSystem.Controllers
         }
     }
 }
-
