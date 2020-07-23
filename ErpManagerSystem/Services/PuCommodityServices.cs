@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ﻿using Common.Help;
 using IRepository;
 using IServices;
@@ -9,14 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-=======
-﻿using IRepository;
-using IServices;
-using Model.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Text;
->>>>>>> origin/RepObject
+
 
 namespace Services
 {
@@ -29,7 +22,6 @@ namespace Services
             _pucommodityrepository = pucommodityrepository;
             base.CurrentRepository = pucommodityrepository;
         }
-<<<<<<< HEAD
 
          public async Task<PagedList<PuCommodity>> PuCommodityInfoPaged(PuCommodityParams puCommodityparams)
         {
@@ -40,7 +32,5 @@ namespace Services
             }
             return await PagedList<PuCommodity>.CreatePagedList(pucommodityinfo, puCommodityparams.PageSize, puCommodityparams.PageNum);
         }
-=======
->>>>>>> origin/RepObject
     }
 }

@@ -4,7 +4,6 @@
         <name>ErpManagerSystem</name>
     </assembly>
     <members>
-<<<<<<< HEAD
         <member name="T:ErpManagerSystem.Controllers.PuCommodityCategoryController">
             <summary>
             原材料分类表
@@ -93,25 +92,14 @@
             <param name="puCommodityEditDto"></param>
             <returns></returns>
         </member>
-        <member name="T:ErpManagerSystem.Controllers.PuSupplierController">
-            <summary>
-            供应商API  供应商档案员操作
-            </summary>
-        </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplier">
             <summary>
             获取供应商信息
-=======
-        <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplier">
-            <summary>
-            获取经销商信息
->>>>>>> origin/RepObject
             </summary>
             <returns></returns>
         </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.PuSupplierById(System.Int32)">
             <summary>
-<<<<<<< HEAD
             通过Id获取供应商信息
             </summary>
             <returns></returns>
@@ -121,16 +109,11 @@
             供应商分页
             </summary>
             <param name="puSupplierParams"></param>
-=======
-            通过Id获取经销商信息
-            </summary>
->>>>>>> origin/RepObject
             <returns></returns>
         </member>
         <member name="M:ErpManagerSystem.Controllers.PuSupplierController.CreatePuSupplier(Model.Dtos.AddDto.PuSupplierAddDto)">
             <summary>
-<<<<<<< HEAD
-            添加供应商信息
+            添加经销商信息
             </summary>
             <returns></returns>
         </member>
@@ -146,10 +129,6 @@
             修改供应商信息
             </summary>
             <param name="puSupplierEditDto"></param>
-=======
-            添加经销商信息
-            </summary>
->>>>>>> origin/RepObject
             <returns></returns>
         </member>
     </members>

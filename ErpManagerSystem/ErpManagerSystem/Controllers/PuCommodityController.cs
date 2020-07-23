@@ -21,8 +21,9 @@ namespace ErpManagerSystem.Controllers
     /// <summary>
     /// 原材料表
     /// </summary>
-    [Route("api/[controller]/[action]")]
+    
     [ApiController]
+    [Route("api/[controller]/[action]")]
     [Authorize]
     public class PuCommodityController : ControllerBase
     {
