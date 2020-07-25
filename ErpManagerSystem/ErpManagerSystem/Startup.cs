@@ -33,6 +33,15 @@ namespace ErpManagerSystem
                 configure.UseSqlServer(_configuration.GetConnectionString("default"));
                 configure.UseLazyLoadingProxies();
             });
+            services.AddCors(setup =>
+            {
+                setup.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:8080","http://127.0.0.1:8080")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerSetup();
             services.AddAuthorizationSetup(_configuration);
@@ -51,6 +60,7 @@ namespace ErpManagerSystem
                 setup.SwaggerEndpoint("swagger/v1/swagger.json", "v1");
             });
             app.UseRouting();
+            app.UseCors("default");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

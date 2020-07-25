@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace ErpManagerSystem.Controllers
 {
     [ApiController]
-    [Route("api/login")]
+    [Route("api/[controller]/[action]")]
     public class LoginController : ControllerBase
     {
         private readonly IAcUserInfoServices _acUserInfoServices;
