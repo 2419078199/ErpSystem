@@ -5,7 +5,7 @@
       <i v-if="!collapse" class="el-icon-s-fold"></i>
       <i v-else class="el-icon-s-unfold"></i>
     </div>
-    <div class="logo" style="width:270px">千里马幼儿园后台管理系统</div>
+    <div class="logo" style="width:270px">ERP管理系统</div>
     <div class="header-right">
       <div class="header-user-con">
         <!-- 全屏显示 -->

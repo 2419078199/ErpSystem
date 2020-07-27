@@ -217,6 +217,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:ErpManagerSystem.Controllers.PowerController">
+            <summary>
+            权限管理
+            </summary>
+        </member>
         <member name="M:ErpManagerSystem.Controllers.PrProductController.GetPrProducts(Model.Params.PrProductParams)">
             <summary>
             PrProduct分页查询

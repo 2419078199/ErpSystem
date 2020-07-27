@@ -2,10 +2,8 @@
   <div class="login_container">
     <div class="login_box">
       <div class="avatar_box">
-        <!-- 图片区域 -->
-        <img src="../assets/infants.jpg" alt="" />
+        <!-- <img src="../assets/infants.jpg" alt="" /> -->
       </div>
-      <!-- 表单区域 -->
       <el-form
         :model="loginForm"
         :rules="loginFromRules"
@@ -13,7 +11,6 @@
         ref="loginForm"
         class="login_form"
       >
-        <!-- 用户名 -->
         <el-form-item prop="account" label="账号">
           <el-input
             v-model="loginForm.account"
@@ -93,49 +90,5 @@ export default {
   created() {}
 }
 </script>
-
-<style lang="scss" scoped>
-.login_container {
-  height: 100%;
-  background-color: #2b4b6b;
-}
-.login_box {
-  height: 350px;
-  width: 450px;
-  background-color: #ffffff;
-  border-radius: 5px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  .avatar_box {
-    height: 130px;
-    width: 130px;
-    border: 1px solid #eee;
-    border-radius: 50%;
-    padding: 10px;
-    box-shadow: 0 0 10px #ddd;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    img {
-      widows: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #eee;
-    }
-  }
-}
-.login_form {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-.btns {
-  display: flex;
-  justify-content: flex-end;
-}
+<style>
 </style>
