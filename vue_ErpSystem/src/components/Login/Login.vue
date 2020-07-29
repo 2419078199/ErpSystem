@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container pull-height" @keyup.enter="handleLogin">
+  <div class="login-container pull-height">
     <div class="login-info text-white animated fadeInLeft">
     </div>
     <div class="login-border  animated fadeInRight">
