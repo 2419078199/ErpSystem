@@ -4,6 +4,7 @@ import notFind from '../components/404.vue'
 import Welcome from '../components/Welcom.vue'
 import Login from '../components/Login/Login.vue'
 import Home from '../components/Home.vue'
+import ProductPlan from '../components/Product/Plan.vue'
 // import Role from '../components/Home/Role.vue'
 // import Action from '../components/Home/Action.vue'
 // import Student from '../components/Home/Student.vue'
@@ -31,6 +32,11 @@ const routes = [{
                 path: '/welcome',
                 component: Welcome,
                 meta: { title: '欢迎页' }
+            },
+            {
+                path: '/Plan',
+                component: ProductPlan,
+                meta: { title: '生产计划管理' }
             }
             // {
             //   path: '/role',
