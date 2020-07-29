@@ -4,6 +4,7 @@ import notFind from '../components/404.vue'
 import Welcome from '../components/Welcom.vue'
 import Login from '../components/Login/Login.vue'
 import Home from '../components/Home.vue'
+<<<<<<< HEAD
 import Suppliers from '../components/Suppliers/SupplierList.vue'
 import ProductPlan from '../components/Product/Plan.vue'
 // import Role from '../components/Home/Role.vue'
@@ -98,26 +99,61 @@ const routes = [{
         path: '*',
         component: notFind
     }
+=======
+import OrderList from '../components/Order/OrderList.vue'
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/home',
+    component: Home,
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        component: Welcome,
+        meta: { title: '欢迎页' }
+      },
+      {
+        path: '/order',
+        component: OrderList,
+        meta: { title: '订单列表' }
+      }
+    ]
+  },
+  {
+    path: '*',
+    component: notFind
+  }
+>>>>>>> 8a5ef2f01cbd6cb70510d4778c915b75942ae494
 ]
 
 const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
 router.beforeEach((to, from, next) => {
-    const token = window.sessionStorage.getItem('token')
-        //去login
-    if (to.path == '/login') {
-        if (token != null) {
-            return next('/home')
-        }
-        return next()
-    }
-    //不去login
-    if (token == null) {
-        return next('/login')
+  const token = window.sessionStorage.getItem('token')
+  //去login
+  if (to.path == '/login') {
+    if (token != null) {
+      return next('/home')
     }
     return next()
+  }
+  //不去login
+  if (token == null) {
+    return next('/login')
+  }
+  return next()
 })
 export default router

@@ -2,5 +2,6 @@
 {
     public class SlOrderParams : BaseParams
     {
+        public string CustomerName { get; set; }
     }
 }

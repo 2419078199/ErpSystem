@@ -10,7 +10,9 @@ namespace ErpManagerSystem.Profiles
     {
         public SlOrderProfile()
         {
-            CreateMap<SlOrder, SlOrderDto>();
+            CreateMap<SlOrder, SlOrderDto>()
+                .ForMember(dto => dto.CustomerName, opt => opt.MapFrom(entity => entity.Customer.Name))
+                .ForMember(dto => dto.ProductName, opt => opt.MapFrom(entity => entity.Product.Name));
             CreateMap<SlOrderAddDto, SlOrder>();
             CreateMap<SlOrderEditDto, SlOrder>();
         }
