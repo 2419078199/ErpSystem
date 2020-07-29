@@ -37,11 +37,7 @@ namespace ErpManagerSystem
             {
                 setup.AddPolicy("default", policy =>
                 {
-<<<<<<< HEAD
                     policy.WithOrigins("http://localhost:8080","http://127.0.0.1:8080", "http://localhost:8082")
-=======
-                    policy.WithOrigins("http://localhost:8080", "http://127.0.0.1:8080")
->>>>>>> 8a5ef2f01cbd6cb70510d4778c915b75942ae494
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .WithExposedHeaders("X-Pagination");

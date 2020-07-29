@@ -110,7 +110,7 @@
     },
     methods:{
        async getSuppliersList(){
-           const {data:res}=await this.$http.get('PuSupplier/PuSupplier');
+           const {data:res}=await this.$axios.get('PuSupplier/PuSupplier');
            console.log(res.data);
            this.tableData=res.data;
         },
