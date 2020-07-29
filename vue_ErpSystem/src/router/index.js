@@ -4,11 +4,8 @@ import notFind from '../components/404.vue'
 import Welcome from '../components/Welcom.vue'
 import Login from '../components/Login/Login.vue'
 import Home from '../components/Home.vue'
-<<<<<<< HEAD
 import Suppliers from '../components/Suppliers/SupplierList.vue'
-=======
 import ProductPlan from '../components/Product/Plan.vue'
->>>>>>> yangtu1
 // import Role from '../components/Home/Role.vue'
 // import Action from '../components/Home/Action.vue'
 // import Student from '../components/Home/Student.vue'
@@ -42,15 +39,13 @@ const routes = [{
                 meta: { title: '欢迎页' }
             },
             {
-<<<<<<< HEAD
                 path: '/Suppliers/Index',
                 component: Suppliers,
                 meta: { title: '供应商信息' }
-=======
+            },{
                 path: '/Plan',
                 component: ProductPlan,
                 meta: { title: '生产计划管理' }
->>>>>>> yangtu1
             }
             // {
             //   path: '/role',
