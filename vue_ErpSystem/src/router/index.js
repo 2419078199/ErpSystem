@@ -4,6 +4,7 @@ import notFind from '../components/404.vue'
 import Welcome from '../components/Welcom.vue'
 import Login from '../components/Login/Login.vue'
 import Home from '../components/Home.vue'
+import Suppliers from '../components/Suppliers/SupplierList.vue'
 // import Role from '../components/Home/Role.vue'
 // import Action from '../components/Home/Action.vue'
 // import Student from '../components/Home/Student.vue'
@@ -13,6 +14,10 @@ import Home from '../components/Home.vue'
 // import EditPass from '../components/Home/EditPass.vue'
 // import Activity from '../components/Home/Activity.vue'
 // import AddActivity from '../components/Home/AddActivity.vue'
+import axios from 'axios'
+//配置请求根路径
+axios.defaults.baseURL='http://localhost:5000'
+Vue.prototype.$http=axios
 Vue.use(VueRouter)
 
 const routes = [{
@@ -31,6 +36,11 @@ const routes = [{
                 path: '/welcome',
                 component: Welcome,
                 meta: { title: '欢迎页' }
+            },
+            {
+                path: '/Suppliers/Index',
+                component: Suppliers,
+                meta: { title: '供应商信息' }
             }
             // {
             //   path: '/role',
