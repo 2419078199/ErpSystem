@@ -30,7 +30,7 @@
           <el-button
             type="primary"
             @click="loginFormSubmit"
-            @keydown.enter="loginFormSubmit()"
+            @keyup.enter.native="loginFormSubmit"
             >登录</el-button
           >
           <el-button type="info" @click="loginFormReset">重置</el-button>
@@ -90,5 +90,4 @@ export default {
   created() {}
 }
 </script>
-<style>
-</style>
+<style></style>

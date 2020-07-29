@@ -7,7 +7,9 @@ namespace Model.Dtos.Dto
         public int Id { get; set; }
         public string No { get; set; }
         public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
         public int ProductId { get; set; }
+        public string ProductName { get; set; }
         public decimal Nums { get; set; }
         public decimal? Price { get; set; }
         public DateTime? DeliveryDate { get; set; }

@@ -21,6 +21,10 @@ namespace Services
         public async Task<PagedList<SlOrder>> GetOrderPaged(SlOrderParams slOrderParams)
         {
             IQueryable<SlOrder> itemsOrders = _slorderrepository.GetEntitys();
+            if (!string.IsNullOrWhiteSpace(slOrderParams.CustomerName))
+            {
+                itemsOrders = itemsOrders.Where(o => o.Customer.Name.Contains(slOrderParams.CustomerName));
+            }
             return await PagedList<SlOrder>.CreatePagedList(itemsOrders, slOrderParams.PageSize, slOrderParams.PageNum);
         }
     }
