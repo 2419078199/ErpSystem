@@ -2,7 +2,6 @@
   <div class="login_container">
     <div class="login_box">
       <div class="avatar_box">
-        <!-- <img src="../assets/infants.jpg" alt="" /> -->
       </div>
       <el-form
         :model="loginForm"

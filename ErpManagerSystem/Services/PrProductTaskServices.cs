@@ -23,7 +23,7 @@ namespace Services
             IQueryable<PrProductTask> prProductTask = _iprproducttaskrepository.GetEntitys();
             if (!string.IsNullOrWhiteSpace(prProductTaskParams.SearchInfo))
             {
-                prProductTask = prProductTask.Where(a => a.No.Contains(prProductTaskParams.SearchInfo) || a.Batch.Contains(prProductTaskParams.SearchInfo));
+                prProductTask = prProductTask.Where(a =>a.ProductNavigation.Name.Contains(prProductTaskParams.SearchInfo) || a.No.Contains(prProductTaskParams.SearchInfo) || a.Batch.Contains(prProductTaskParams.SearchInfo));
             }
             return await PagedList<PrProductTask>.CreatePagedList(prProductTask, prProductTaskParams.PageSize, prProductTaskParams.PageNum);
         }

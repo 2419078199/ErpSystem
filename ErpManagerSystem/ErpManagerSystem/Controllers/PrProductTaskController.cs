@@ -3,6 +3,7 @@ using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
 using Model.Dtos.EditDto;
@@ -25,15 +26,38 @@ namespace ErpManagerSystem.Controllers
         private readonly IPrProductTaskServices _prProductTaskServices;
         private readonly IAcUserInfoServices _acUserInfoServices;
         private readonly IAcStaffServices _acStaffServices;
+        private readonly ISlOrderServices _slOrderServices;
 
-        public PrProductTaskController(IMapper mapper, IPrProductTaskServices prProductTaskServices, IAcUserInfoServices acUserInfoServices,IAcStaffServices acStaffServices)
+        public PrProductTaskController(IMapper mapper, IPrProductTaskServices prProductTaskServices, IAcUserInfoServices acUserInfoServices,IAcStaffServices acStaffServices,ISlOrderServices slOrderServices)
         {
             _mapper = mapper;
             _prProductTaskServices = prProductTaskServices;
             _acUserInfoServices = acUserInfoServices;
             _acStaffServices = acStaffServices;
+            _slOrderServices = slOrderServices;
         }
-
+        [HttpGet]
+        public async Task<ActionResult<MessageModel<List<string>>>> GetOdernos()
+        {
+            MessageModel<List<string>> res = new MessageModel<List<string>>();
+            var listno = await _slOrderServices.GetEntitys(u => true).ToListAsync();
+            var tasks = await _prProductTaskServices.GetEntitys(u => true).ToListAsync();
+            List<string> tasknos = new List<string>();
+            foreach (var item in tasks)
+            {
+                tasknos.Add(item.No);
+            }
+            List<string> nos = new List<string>();
+            foreach (var item in listno)
+            {
+                if (!tasknos.Contains(item.No))
+                {
+                    nos.Add(item.No);
+                }
+            }
+            res.Data = nos;
+            return Ok(res);
+        }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PrProductTaskDto>>> GetPrProductTasks([FromQuery] PrProductTaskParams prProductTaskParams)
         {
