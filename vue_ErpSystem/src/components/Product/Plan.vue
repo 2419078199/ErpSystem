@@ -24,6 +24,7 @@
       </el-table-column>
       <el-table-column prop="operatorName" label="操作人" width="120"></el-table-column>
       <el-table-column prop="no" label="订单编号" width="150"></el-table-column>
+      <el-table-column prop="remark" label="备注" width="120"></el-table-column>
       <el-table-column prop="status" label="状态" width="120"></el-table-column>
       <el-table-column fixed="right" label="操作" width="180">
         <template slot-scope="scope">
