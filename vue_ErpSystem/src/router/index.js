@@ -6,6 +6,14 @@ import Login from '../components/Login/Login.vue'
 import Home from '../components/Home.vue'
 import Suppliers from '../components/Suppliers/SupplierList.vue'
 import ProductPlan from '../components/Product/Plan.vue'
+import ProductPicking from '../components/Product/Picking.vue'
+import ProductProductPr from '../components/Product/ProductPr.vue'
+import ProductSlOrderPrTask from '../components/Product/SlOrderPrTask.vue'
+import WarehouseProductWH from '../components/PrWarehouse/ProductWH.vue'
+import WarehouseProductInWH from '../components/PrWarehouse/ProductInWH.vue'
+import WarehouseProductInWHMng from '../components/PrWarehouse/ProductInWHMng.vue'
+import WarehouseProductOutWH from '../components/PrWarehouse/ProductOutWH.vue'
+import WarehouseProductOutWHMng from '../components/PrWarehouse/ProductOutWHMng.vue'
 // import Role from '../components/Home/Role.vue'
 // import Action from '../components/Home/Action.vue'
 // import Student from '../components/Home/Student.vue'
@@ -41,18 +49,58 @@ const routes = [{
                 path: '/Suppliers/Index',
                 component: Suppliers,
                 meta: { title: '供应商信息' }
-            },{
+            }, {
                 path: '/Plan',
                 component: ProductPlan,
                 meta: { title: '生产计划管理' }
             },
             {
-              path: '/order',
-              component: OrderList,
-              meta: { title: '订单列表' }
+                path: '/Picking',
+                component: ProductPicking,
+                meta: { title: '领料管理' }
+            },
+            {
+                path: '/Product',
+                component: ProductProductPr,
+                meta: { title: '产品生产' }
+            },
+            {
+                path: '/SlOrderPrTask',
+                component: ProductSlOrderPrTask,
+                meta: { title: '订单查询' }
+            },
+            {
+                path: '/ProductWH',
+                component: WarehouseProductWH,
+                meta: { title: '库存管理' }
+            },
+            {
+                path: '/ProductInWH',
+                component: WarehouseProductInWH,
+                meta: { title: '添加入库单' }
+            },
+            {
+                path: '/ProductInWHMng',
+                component: WarehouseProductInWHMng,
+                meta: { title: '入库单管理' }
+            },
+            {
+                path: '/ProductOutWH',
+                component: WarehouseProductOutWH,
+                meta: { title: '添加出库单' }
+            },
+            {
+                path: '/ProductOutWHMng',
+                component: WarehouseProductOutWHMng,
+                meta: { title: '出库单管理' }
+            },
+            {
+                path: '/order',
+                component: OrderList,
+                meta: { title: '订单列表' }
             }
-            
-          
+
+
         ]
     },
     {
@@ -63,23 +111,23 @@ const routes = [{
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 router.beforeEach((to, from, next) => {
-  const token = window.sessionStorage.getItem('token')
-  //去login
-  if (to.path == '/login') {
-    if (token != null) {
-      return next('/home')
+    const token = window.sessionStorage.getItem('token')
+        //去login
+    if (to.path == '/login') {
+        if (token != null) {
+            return next('/home')
+        }
+        return next()
+    }
+    //不去login
+    if (token == null) {
+        return next('/login')
     }
     return next()
-  }
-  //不去login
-  if (token == null) {
-    return next('/login')
-  }
-  return next()
 })
 export default router
