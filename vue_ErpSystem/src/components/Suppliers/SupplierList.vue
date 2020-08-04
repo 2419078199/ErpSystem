@@ -14,8 +14,8 @@
     <el-row :gutter="25">
       <el-col :span="8">
           <div>
-           <el-input placeholder="请输入内容">
-             <el-button slot="append" icon="el-icon-search"></el-button>
+           <el-input placeholder="请输入内容" v-model="queryInfo.Address">
+             <el-button slot="append" icon="el-icon-search" @click="getSuppliersList"></el-button>
            </el-input>
         </div>
 </el-col>
@@ -43,6 +43,19 @@
     </el-table>
 </div>
 <!--table信息展示-->
+<!-- 分页 -->
+<div class="block">
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="queryInfo.pageNum"
+      :page-sizes="[2,5,8,10]"
+      :page-size="queryInfo.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
+  </div>
+<!-- 分页 -->
 </el-card>
 <!--卡片-->
 <!-- 添加对话框 dialogVisible:控制添加按钮是否出现-->
@@ -148,6 +161,16 @@
             "tel": "",
             "credit": "五级"
         },
+        //存储分页信息
+        queryInfo:{
+          //页数大小
+          pageSize: 8,
+          //当前页
+          pageNum: 1,
+          Address:''
+        },
+        //总数据条数
+        total:0,
         // 供应商详情信息
         DetailFrom:{},
          // 修改表单信息
@@ -186,8 +209,14 @@
     },
     methods:{
        async getSuppliersList(){
-           const {data:res}=await this.$axios.get('PuSupplier/PuSupplier');
-           this.tableData=res.data;
+         console.log(this.queryInfo.Address)
+           //获取返回信息
+           const res=await this.$axios.get('PuSupplier/PuSupplierPaged',{params:this.queryInfo});
+          //给tableData填充数据
+           this.tableData=res.data.data;
+           console.log(this.tableData)
+          //获取返回头信息里的返回条数
+           this.total=JSON.parse(res.headers['x-pagination']).totalCount;
         },
         //点击关闭添加表单
         handleClose(){
@@ -284,13 +313,26 @@
          const {data:res} =await this.$axios.get(`PuSupplier/PuSupplierById/${id}`)
           //3.将数据填充到DetailFrom
           this.DetailFrom=res.data;
-          console.log(DetailFrom)
         },
         //点击关闭详情对话框
         DetailFromClose(){
            this.DetaildialogVisible=false;
-        }
+        },
+        //分页
+        //选择每页显示数据
+        handleSizeChange(newsize){
+          //改变每页显示的数据
+          this.queryInfo.pageSize=newsize;
+          //重新获取数据
+           this.getSuppliersList()
 
+        },
+        //改变当前页
+        handleCurrentChange(newCurrent){
+         this.queryInfo.pageNum=newCurrent;
+        //重新获取数据
+        this.getSuppliersList();
+        }
     },
     created(){
        this.getSuppliersList();

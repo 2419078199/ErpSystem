@@ -21,7 +21,6 @@ namespace ErpManagerSystem.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IAuRecordServices _auRecordServices;
-        private object recordPaged;
 
         public AuRecordController(IMapper mapper, IAuRecordServices auRecordServices)
         {
@@ -49,7 +48,7 @@ namespace ErpManagerSystem.Controllers
                 nextLink
             };
             HttpContext.Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(pagination));
-            res.Data = _mapper.Map<IEnumerable<AuRecordDto>>(recordPaged);
+            res.Data = _mapper.Map<IEnumerable<AuRecordDto>>(list);
             return Ok(res);
         }
 
