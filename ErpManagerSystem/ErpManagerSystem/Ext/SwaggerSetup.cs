@@ -33,6 +33,9 @@ namespace ErpManagerSystem.Ext
                     Description = "请输入accessToken"
                 });
                 setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "ErpManagerSystem.xml"), true);
+
+                var xmlModelPath = Path.Combine(AppContext.BaseDirectory, "Model.xml");//这个就是Model层的xml文件名
+                setup.IncludeXmlComments(xmlModelPath,true);
             });
         }
     }
