@@ -7,6 +7,9 @@ using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
 using Model.Dtos.EditDto;
 using Model.Entitys;
+using Model.Params;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,12 +28,23 @@ namespace ErpManagerSystem.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<SlCustomerDto>>> GetCustomer()
+        [HttpGet(Name = nameof(GetCustomer))]
+        public async Task<ActionResult<IEnumerable<SlCustomerDto>>> GetCustomer([FromQuery] CustomerParams customerParams)
         {
             MessageModel<IEnumerable<SlCustomerDto>> res = new MessageModel<IEnumerable<SlCustomerDto>>();
-            List<SlCustomer> list = await _slCustomerServices.GetEntitys().ToListAsync();
-            res.Data = _mapper.Map<IEnumerable<SlCustomerDto>>(list);
+            PagedList<SlCustomer> customerPaged = await _slCustomerServices.GetCustomerPaged(customerParams);
+            string previousLink = customerPaged.HasPrevious ? CreateUrl(PagedType.Previous, customerParams) : null;
+            string nextLink = customerPaged.HasNext ? CreateUrl(PagedType.Next, customerParams) : null;
+            var pagination = new
+            {
+                currentPage = customerPaged.PageNum,
+                totalPage = customerPaged.TotalPage,
+                totalCount = customerPaged.TotalCount,
+                previousLink,
+                nextLink
+            };
+            HttpContext.Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(pagination));
+            res.Data = _mapper.Map<IEnumerable<SlCustomerDto>>(customerPaged);
             return Ok(res);
         }
 
@@ -53,6 +67,11 @@ namespace ErpManagerSystem.Controllers
         {
             MessageModel<SlCustomerDto> res = new MessageModel<SlCustomerDto>();
             SlCustomer entity = _mapper.Map<SlCustomer>(slCustomerAddDto);
+            entity.Postcode = "423000";
+            entity.Linkman = entity.Name;
+            entity.Custtel=entity.Linktel;
+            entity.Sex = true;
+            entity.Love = "无";
             await _slCustomerServices.AddEntityAsync(entity);
             res.Data = _mapper.Map<SlCustomerDto>(entity);
             return CreatedAtRoute(nameof(GetCustomerById), new { id = entity.Id }, res);
@@ -85,6 +104,34 @@ namespace ErpManagerSystem.Controllers
             await _slCustomerServices.EditEntityAsync(entity);
             res.Data = _mapper.Map<SlCustomerDto>(entity);
             return Ok(res);
+        }
+        private string CreateUrl(PagedType pagedType, CustomerParams customerParams)
+        {
+            string url = string.Empty;
+            switch (pagedType)
+            {
+                case PagedType.Previous:
+                    url = Url.Link(nameof(GetCustomer), new
+                    {
+                        PageSize = customerParams.PageSize,
+                        CustomerName = customerParams.CustomerName,
+                        PageNum = customerParams.PageNum - 1
+                    });
+                    break;
+
+                case PagedType.Next:
+                    url = Url.Link(nameof(GetCustomer), new
+                    {
+                        PageSize = customerParams.PageSize,
+                        CustomerName = customerParams.CustomerName,
+                        PageNum = customerParams.PageNum + 1
+                    });
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(pagedType), pagedType, null);
+            }
+            return url;
         }
     }
 }

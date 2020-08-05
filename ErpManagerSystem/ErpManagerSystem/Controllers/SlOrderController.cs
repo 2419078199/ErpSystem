@@ -126,7 +126,8 @@ namespace ErpManagerSystem.Controllers
                     url = Url.Link(nameof(GetOrders), new
                     {
                         PageSize = slOrderParams.PageSize,
-                        PageNum = slOrderParams.PageNum - 1
+                        PageNum = slOrderParams.PageNum - 1,
+                        CustomerName = slOrderParams.CustomerName
                     });
                     break;
 
@@ -134,7 +135,8 @@ namespace ErpManagerSystem.Controllers
                     url = Url.Link(nameof(GetOrders), new
                     {
                         PageSize = slOrderParams.PageSize,
-                        PageNum = slOrderParams.PageNum + 1
+                        PageNum = slOrderParams.PageNum + 1,
+                        CustomerName = slOrderParams.CustomerName
                     });
                     break;
 

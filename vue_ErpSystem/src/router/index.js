@@ -5,6 +5,8 @@ import Welcome from '../components/Welcom.vue'
 import Login from '../components/Login/Login.vue'
 import Home from '../components/Home.vue'
 import OrderList from '../components/Order/OrderList.vue'
+import Customer from '../components/Customer/Customer.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -30,6 +32,11 @@ const routes = [
         path: '/order',
         component: OrderList,
         meta: { title: '订单列表' }
+      },
+      {
+        path: '/Customer/Index',
+        component: Customer,
+        meta: { title: '客户信息' }
       }
     ]
   },

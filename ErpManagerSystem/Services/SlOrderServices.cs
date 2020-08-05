@@ -25,6 +25,10 @@ namespace Services
             {
                 itemsOrders = itemsOrders.Where(o => o.Customer.Name.Contains(slOrderParams.CustomerName));
             }
+            if (slOrderParams.Status >= 0)
+            {
+                itemsOrders = itemsOrders.Where(a => a.Status == slOrderParams.Status);
+            }
             return await PagedList<SlOrder>.CreatePagedList(itemsOrders, slOrderParams.PageSize, slOrderParams.PageNum);
         }
     }
