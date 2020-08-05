@@ -14,6 +14,14 @@ import WarehouseProductInWH from '../components/PrWarehouse/ProductInWH.vue'
 import WarehouseProductInWHMng from '../components/PrWarehouse/ProductInWHMng.vue'
 import WarehouseProductOutWH from '../components/PrWarehouse/ProductOutWH.vue'
 import WarehouseProductOutWHMng from '../components/PrWarehouse/ProductOutWHMng.vue'
+import Purchase from '../components/Purchasing/Purchase.vue'
+import PurchasingAdd from '../components/Purchasing/PurchasingAdd.vue'
+import PurchasingDetails from '../components/Purchasing/PurchasingDetails.vue'
+import PuCommodityAdd from '../components/PuCommodity/PuCommodityAdd.vue'
+import PuCommodityList from '../components/PuCommodity/PuCommodityList.vue'
+import PuCommodityOut from '../components/PuCommodity/PuCommodityOut.vue'
+
+
 // import Role from '../components/Home/Role.vue'
 // import Action from '../components/Home/Action.vue'
 // import Student from '../components/Home/Student.vue'
@@ -107,6 +115,36 @@ const routes = [
         path: '/Customer/Index',
         component: Customer,
         meta: { title: '客户信息' }
+      },
+      {
+          path:'/Purchasing/Purchase',
+          component: Purchase,
+          meta: { title: '采购单管理' }
+      },
+      {
+        path:'/Purchasing/Add',
+        component: PurchasingAdd,
+        meta: { title: '采购单管理' }
+      },
+      {
+        path:'/Purchasing/Details',
+        component: PurchasingDetails,
+        meta: { title: '采购单管理' }
+      },
+      {
+        path:'/PuCommodity/Add',
+        component: PuCommodityAdd,
+        meta: { title: '原料入库' }
+      },
+      {
+        path:'/PuCommodity/List',
+        component: PuCommodityList,
+        meta: { title: '原料列表' }
+      },
+      {
+        path:'/PuCommodity/Out',
+        component: PuCommodityOut,
+        meta: { title: '原料出库' }
       }
     ]
   },
