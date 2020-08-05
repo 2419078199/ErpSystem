@@ -3,13 +3,16 @@ using Common.Help;
 using IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Model.Dtos.AddDto;
 using Model.Dtos.Dto;
 using Model.Dtos.EditDto;
 using Model.Entitys;
 using Model.Params;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ErpManagerSystem.Controllers
@@ -21,13 +24,40 @@ namespace ErpManagerSystem.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IPrProductTaskServices _prProductTaskServices;
+        private readonly IAcUserInfoServices _acUserInfoServices;
+        private readonly IAcStaffServices _acStaffServices;
+        private readonly ISlOrderServices _slOrderServices;
 
-        public PrProductTaskController(IMapper mapper, IPrProductTaskServices prProductTaskServices)
+        public PrProductTaskController(IMapper mapper, IPrProductTaskServices prProductTaskServices, IAcUserInfoServices acUserInfoServices,IAcStaffServices acStaffServices,ISlOrderServices slOrderServices)
         {
             _mapper = mapper;
             _prProductTaskServices = prProductTaskServices;
+            _acUserInfoServices = acUserInfoServices;
+            _acStaffServices = acStaffServices;
+            _slOrderServices = slOrderServices;
         }
-
+        [HttpGet]
+        public async Task<ActionResult<MessageModel<List<string>>>> GetOdernos()
+        {
+            MessageModel<List<string>> res = new MessageModel<List<string>>();
+            var listno = await _slOrderServices.GetEntitys(u => true).ToListAsync();
+            var tasks = await _prProductTaskServices.GetEntitys(u => true).ToListAsync();
+            List<string> tasknos = new List<string>();
+            foreach (var item in tasks)
+            {
+                tasknos.Add(item.No);
+            }
+            List<string> nos = new List<string>();
+            foreach (var item in listno)
+            {
+                if (!tasknos.Contains(item.No))
+                {
+                    nos.Add(item.No);
+                }
+            }
+            res.Data = nos;
+            return Ok(res);
+        }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PrProductTaskDto>>> GetPrProductTasks([FromQuery] PrProductTaskParams prProductTaskParams)
         {
@@ -64,7 +94,15 @@ namespace ErpManagerSystem.Controllers
         [HttpPost]
         public async Task<ActionResult<MessageModel<PrProductTaskDto>>> AddPrProductTask(PrProductTaskAddDto prProductTaskAddDto)
         {
+            string uid = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")?.Value;
+            var userentity = await _acUserInfoServices.GetEntityByIdAsync(int.Parse(uid));
+            var staffentity = await _acStaffServices.GetEntityByIdAsync(int.Parse(userentity.StaffId.ToString()));
             var res = new MessageModel<PrProductTaskDto>();
+            prProductTaskAddDto.Batch = DateTime.Now.ToString("yyyyMMddHHmmss");
+            prProductTaskAddDto.OperatorId = userentity.StaffId;
+            prProductTaskAddDto.OperateTime = DateTime.Now;
+            prProductTaskAddDto.DepartmentId = staffentity.DepartmentId;
+            prProductTaskAddDto.Status = 0;
             var entity = _mapper.Map<PrProductTask>(prProductTaskAddDto);
             await _prProductTaskServices.AddEntityAsync(entity);
             res.Data = _mapper.Map<PrProductTaskDto>(entity);
@@ -79,6 +117,7 @@ namespace ErpManagerSystem.Controllers
             {
                 return NotFound(StyleCode.NotFound(res));
             }
+
             await _prProductTaskServices.DeleteEntityByIdAsync(PrProductTaskId);
             return Ok(res);
         }

@@ -4,6 +4,26 @@ import notFind from '../components/404.vue'
 import Welcome from '../components/Welcom.vue'
 import Login from '../components/Login/Login.vue'
 import Home from '../components/Home.vue'
+import Suppliers from '../components/Suppliers/SupplierList.vue'
+import ProductPlan from '../components/Product/Plan.vue'
+import ProductPicking from '../components/Product/Picking.vue'
+import ProductProductPr from '../components/Product/ProductPr.vue'
+import ProductSlOrderPrTask from '../components/Product/SlOrderPrTask.vue'
+import WarehouseProductWH from '../components/PrWarehouse/ProductWH.vue'
+import WarehouseProductInWH from '../components/PrWarehouse/ProductInWH.vue'
+import WarehouseProductInWHMng from '../components/PrWarehouse/ProductInWHMng.vue'
+import WarehouseProductOutWH from '../components/PrWarehouse/ProductOutWH.vue'
+import WarehouseProductOutWHMng from '../components/PrWarehouse/ProductOutWHMng.vue'
+// import Role from '../components/Home/Role.vue'
+// import Action from '../components/Home/Action.vue'
+// import Student from '../components/Home/Student.vue'
+// import User from '../components/Home/User.vue'
+// import Grade from '../components/Home/Grade.vue'
+// import Center from '../components/Home/Center.vue'
+// import EditPass from '../components/Home/EditPass.vue'
+// import Activity from '../components/Home/Activity.vue'
+// import AddActivity from '../components/Home/AddActivity.vue'
+
 import OrderList from '../components/Order/OrderList.vue'
 import Customer from '../components/Customer/Customer.vue'
 
@@ -27,6 +47,56 @@ const routes = [
         path: '/welcome',
         component: Welcome,
         meta: { title: '欢迎页' }
+      },
+      {
+        path: '/Suppliers/Index',
+        component: Suppliers,
+        meta: { title: '供应商信息' }
+      },
+      {
+        path: '/Plan',
+        component: ProductPlan,
+        meta: { title: '生产计划管理' }
+      },
+      {
+        path: '/Picking',
+        component: ProductPicking,
+        meta: { title: '领料管理' }
+      },
+      {
+        path: '/Product',
+        component: ProductProductPr,
+        meta: { title: '产品生产' }
+      },
+      {
+        path: '/SlOrderPrTask',
+        component: ProductSlOrderPrTask,
+        meta: { title: '订单查询' }
+      },
+      {
+        path: '/ProductWH',
+        component: WarehouseProductWH,
+        meta: { title: '库存管理' }
+      },
+      {
+        path: '/ProductInWH',
+        component: WarehouseProductInWH,
+        meta: { title: '添加入库单' }
+      },
+      {
+        path: '/ProductInWHMng',
+        component: WarehouseProductInWHMng,
+        meta: { title: '入库单管理' }
+      },
+      {
+        path: '/ProductOutWH',
+        component: WarehouseProductOutWH,
+        meta: { title: '添加出库单' }
+      },
+      {
+        path: '/ProductOutWHMng',
+        component: WarehouseProductOutWHMng,
+        meta: { title: '出库单管理' }
       },
       {
         path: '/order',

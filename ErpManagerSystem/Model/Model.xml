@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Model</name>
+    </assembly>
+    <members>
+        <member name="T:Model.Entitys.PuSupplier">
+            <summary>
+            供应商实体
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Name">
+            <summary>
+            供应商名称
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Postcode">
+            <summary>
+            供应商编号
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Linkman">
+            <summary>
+            联系人
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Qq">
+            <summary>
+            QQ
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Weixin">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Credit">
+            <summary>
+            信誉值
+            </summary>
+        </member>
+        <member name="P:Model.Entitys.PuSupplier.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+    </members>
+</doc>
